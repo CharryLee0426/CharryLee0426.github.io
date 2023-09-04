@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Install Golang from Source Code - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Install Golang from Source Code - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2022/04/27/InstallGoFromSource/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2022-04-27T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/golang/">golang</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>April</span>
+            <span>27,</span>
+            <span>2022</span>
+        </div>
+        
+
+        <h2 class="title">Install Golang from Source Code</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Install-Golang-from-Source-Code"><a href="#Install-Golang-from-Source-Code" class="headerlink" title="Install Golang from Source Code"></a>Install Golang from Source Code</h1><h2 id="0-Overview"><a href="#0-Overview" class="headerlink" title="0. Overview"></a>0. Overview</h2><p>This article gives a step-by-step guide to install go from source code. My device is <strong>M1 Mac</strong>. So this article is very helpful for those who use Mac on Apple Silicon.</p>
+<p>In this article, I assume that we haven’t installed go from installer or package manager before. Although most users firstly install golang from package manager.</p>
+<h2 id="1-Get-the-source-code"><a href="#1-Get-the-source-code" class="headerlink" title="1. Get the source code"></a>1. Get the source code</h2><p>Golang, or Go, is an open source programming language which is created by Google team. We can get the source code very easily from Github or Golang official website.</p>
+<p>If we use linux, macOS or windows running on amd64 (x86-64), we can choose any version to get the source code. If we use mac on Apple Silicon, whose architecture is arm64, we have to get the source code version 1.16 or later. From Go version 1.16, Golang supports darwin&#x2F;arm64. If we want to build an earlier version, we have to install two Go versions. One is what you want, the other is the version which has arm64 support.</p>
+<h2 id="2-Build-the-Go-Bootstrap"><a href="#2-Build-the-Go-Bootstrap" class="headerlink" title="2. Build the Go Bootstrap"></a>2. Build the Go Bootstrap</h2><p>Before Go 1.5, the toolchain was written in C. After Go 1.4, the Go team decided to use go to rewrite the toolchain. Therefore, we must build the bootstrap before building the Go programming language. Thankfully, Go supports cross-compiling. We can use our devices to build bootstrap which is fit for other systems and architectures.</p>
+<p>We can go to the src folder to find the <code>bootstrap.bash</code> (<code>bootstrap.bat</code> for Windows) and execute it. If we want to build the bootstrap that is fit to our OS and architecture, we can run this command:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GOOS=linux GOARCH=amd64 ./bootstrap.bash</span><br></pre></td></tr></table></figure>
+
+<p>If we want to build an earlier version Go but our devices are Mac on Apple Silicon, we must use Go 1.16 or later to build a darwin&#x2F;amd64 bootstrap. We can run this command:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GOOS=darwin GOARCH=amd64 ./bootstrap.bash</span><br></pre></td></tr></table></figure>
+
+<p>Then we can get <code>go-darwin-amd64-bootstrap</code> and <code>go-darwin-amd64-bootstrap.tbz</code> at <code>../..</code> (if we are in the <code>src</code> folder).</p>
+<h2 id="3-Compiling-the-Go"><a href="#3-Compiling-the-Go" class="headerlink" title="3. Compiling the Go"></a>3. Compiling the Go</h2><p>We can compile the Go easily just by executing <code>make.bash</code> (<code>make.bat</code> for Windows) in the <code>src</code> subdirectory. We maybe need some configurations in the <code>make.bash</code>.</p>
+<p>If we have Go installed from installer or package manager, we don’t need to config <code>make.bash</code>. The <code>make.bash</code> can detect where our Go is and use it to compile the Go. In fact, step 2 is optional in that situation.</p>
+<p>If we don’t have go installed previously, we need to use our bootstrap to compile the go. We need to set <code>$GOROOT_BOOTSTRAP</code> variable to the path of Go bootstrap. For example, we need to do that config below in Go 1.19 (latest version when I wrote this article):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># line 158</span></span><br><span class="line">goroot_bootstrap_set=<span class="variable">$&#123;GOROOT_BOOTSTRAP+&quot;true&quot;&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$GOROOT_BOOTSTRAP</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">	GOROOT_BOOTSTRAP=<span class="string">&quot;<span class="variable">$HOME</span>/Documents/go-darwin-arm64-bootstrap&quot;</span></span><br><span class="line">	<span class="keyword">for</span> d <span class="keyword">in</span> sdk/go1.17 go1.17; <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$HOME</span>/<span class="variable">$d</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">			GOROOT_BOOTSTRAP=<span class="string">&quot;<span class="variable">$HOME</span>/<span class="variable">$d</span>&quot;</span></span><br><span class="line">		<span class="keyword">fi</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">export</span> GOROOT_BOOTSTRAP</span><br><span class="line"><span class="comment"># line 168</span></span><br></pre></td></tr></table></figure>
+
+<p>Maybe there are some slight differences between <code>make.bash</code> in different versions. But we can always find <code>$GOROOT_BOOTSTRAP</code> variable. After we finish the compile process, we can see these information in our terminal.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Building Go cmd/dist using /Users/lll/Documents/go-darwin-amd64-bootstrap. (go1.19 darwin/amd64)</span><br><span class="line">Building Go toolchain1 using /Users/lll/Documents/go-darwin-amd64-bootstrap.</span><br><span class="line">Building Go bootstrap cmd/go (go_bootstrap) using Go toolchain1.</span><br><span class="line">Building Go toolchain2 using go_bootstrap and Go toolchain1.</span><br><span class="line">Building Go toolchain3 using go_bootstrap and Go toolchain2.</span><br><span class="line">Building packages and commands for darwin/amd64.</span><br><span class="line">---</span><br><span class="line">Installed Go for darwin/amd64 in /Users/lll/Documents/go1.14</span><br><span class="line">Installed commands in /Users/lll/Documents/go1.14/bin</span><br></pre></td></tr></table></figure>
+
+<p>We can use <code>go</code> command at <code>$HOME/Documents/go1.14/bin/go</code>.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/guidence/" class="tag">#guidence</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2022/07/16/ADD%20and%20MUL%20Comparison/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Some Data about Speed of Multiplication and Addition</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2022/03/22/ShellTutorial/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Shell Introduction</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

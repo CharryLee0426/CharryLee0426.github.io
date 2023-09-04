@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>How to use Reids - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="How to use Reids - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2021/01/13/How%20to%20Use%20Redis/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2021-01-13T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Redis/">Redis</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>January</span>
+            <span>13,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">How to use Reids</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="How-to-Use-Redis"><a href="#How-to-Use-Redis" class="headerlink" title="How to Use Redis"></a>How to Use Redis</h1><h2 id="What-is-Redis"><a href="#What-is-Redis" class="headerlink" title="What is Redis?"></a>What is Redis?</h2><p>TL;DR. Redis is an in-memory key-value pairs database. Because it stores data in RAM but not ROM, users can get data from Redis much much quicker than from in-disk databases such as MySQL. Therefore, Redis is used to store cache in many projects.</p>
+<h2 id="How-to-install-Redis"><a href="#How-to-install-Redis" class="headerlink" title="How to install Redis?"></a>How to install Redis?</h2><p>If you use linux, windows linux sub system, or macOS, it is quite easy. Just use your package manager to install redis. For example, you can use homebrew to install redis if you use macOS.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure>
+
+<p>Then you can also install redis client by using this command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>After installing these two softwares, you can start or stop the service in background by using this command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start/stop redis</span><br></pre></td></tr></table></figure>
+
+<p>Then you can use redis-cli to handle your redis database. The default port is <code>6379</code>.</p>
+<h2 id="How-to-use-Redis-Basic-Commands"><a href="#How-to-use-Redis-Basic-Commands" class="headerlink" title="How to use Redis? (Basic Commands)"></a>How to use Redis? (Basic Commands)</h2><h3 id="1-get-and-set"><a href="#1-get-and-set" class="headerlink" title="1. get and set"></a>1. get and set</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set key value</span><br><span class="line"></span><br><span class="line">get key</span><br></pre></td></tr></table></figure>
+
+<p>All values will be stored as strings by default.</p>
+<h3 id="2-delete-key-value-pair"><a href="#2-delete-key-value-pair" class="headerlink" title="2. delete key-value pair"></a>2. delete key-value pair</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del key</span><br></pre></td></tr></table></figure>
+
+<p>The delete operation was executed successfully when it returns integer 1. Only nil will be returned when getting key’s value which deleted bafore again.</p>
+<h3 id="3-if-the-key-value-pair-exists-in-the-database"><a href="#3-if-the-key-value-pair-exists-in-the-database" class="headerlink" title="3. if the key-value pair exists in the database"></a>3. if the key-value pair exists in the database</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exists key</span><br></pre></td></tr></table></figure>
+
+<p>It returns integer 1 if the key-value pair exists.</p>
+<h3 id="4-get-all-keys"><a href="#4-get-all-keys" class="headerlink" title="4. get all keys"></a>4. get all keys</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
+
+<p>In fact, this command can be used to match all keys in the database which follow some pattern.</p>
+<h3 id="5-refresh-the-database-quickly"><a href="#5-refresh-the-database-quickly" class="headerlink" title="5. refresh the database quickly"></a>5. refresh the database quickly</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-get-some-key’s-time-to-leave"><a href="#6-get-some-key’s-time-to-leave" class="headerlink" title="6. get some key’s time to leave"></a>6. get some key’s time to leave</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ttl key</span><br></pre></td></tr></table></figure>
+
+<p>The return result -1 means this key doesn’t have expiration time. This key can keep in the database </p>
+<h3 id="7-set-expire-time-for-some-key"><a href="#7-set-expire-time-for-some-key" class="headerlink" title="7. set expire time for some key"></a>7. set expire time for some key</h3><p>If the key has already been in the database,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expire key seconds</span><br></pre></td></tr></table></figure>
+
+<p>If you want to create a new key-value pair which has an expiration time,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setex key seconds value</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-store-lists-in-redis"><a href="#8-store-lists-in-redis" class="headerlink" title="8. store lists in redis"></a>8. store lists in redis</h3><p>You can imagine lists in redis as a double-direction stack. You can push&#x2F;pop elements at both the beginning and the end. You can’t use ‘get’ to get values in a list.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lpush/rpush key value</span><br><span class="line">lpop/rpop key value</span><br></pre></td></tr></table></figure>
+
+<p>Lpush&#x2F;rpush will return the length of the list. Lpop&#x2F;rpop will return the value.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrange key start stop</span><br></pre></td></tr></table></figure>
+
+<p>This can show many elements in the list. If the stop is -1, all elements in this list will be returned.</p>
+<h3 id="9-store-sets-in-redis"><a href="#9-store-sets-in-redis" class="headerlink" title="9. store sets in redis"></a>9. store sets in redis</h3><p>Set is a data structure which can make sure every element is distinct from each other.</p>
+<p>If you want to create a set,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sadd name value</span><br></pre></td></tr></table></figure>
+
+<p>If you want to check members in the set,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smembers name</span><br></pre></td></tr></table></figure>
+
+<p>If you want to remove a member,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">srem name value</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-hash-in-redis"><a href="#10-hash-in-redis" class="headerlink" title="10. hash in redis"></a>10. hash in redis</h3><p>If you imagine data in redis is a json object, the process that you create a hash object in redis is creating nested json. So the commands you used to handle hash in redis are very similar to those used for normal data. You can just add an “h” to these commands.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset name field value</span><br><span class="line">hget name field</span><br><span class="line">hgetall name</span><br><span class="line">hdel name field</span><br><span class="line">hexists name field</span><br></pre></td></tr></table></figure>
+
+<p>You have to notice that you can’t set expiration time for hash objects in redis because the creator of redis wants to keep redis simple.</p>
+<h2 id="How-to-integrate-Redis-into-Spring-Boot-project"><a href="#How-to-integrate-Redis-into-Spring-Boot-project" class="headerlink" title="How to integrate Redis into Spring Boot project?"></a>How to integrate Redis into Spring Boot project?</h2><p>I tried to integrate Redis into Spring Boot project. It’s not easy to do it. There are many compatiable problems when I tried. Finally, however, I did it. Thus I wanna record what problems I met and how I solved them.</p>
+<h3 id="1-Dependencies"><a href="#1-Dependencies" class="headerlink" title="1. Dependencies"></a>1. Dependencies</h3><p>For compatible reasons, you’d better use Spring Boot version 2 and JDK 8 or 11 or 17. Lombok is very good to eliminate unnecessary code in entities class.</p>
+<p>Here are all dependencies you need:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Until June 2023, there are still lot of bugs in Jedis version 4. So you should use version 3.9.0, the latest version in version 3. The new Jedis will cause an error “JedisShardInfo Class not found”.</p>
+<p>In addition, spring devtools must be removed if you wanna find just one specific record in redis. That is because the restartclassloader can’t cast the target class from Object.</p>
+<h3 id="2-RedisConfig"><a href="#2-RedisConfig" class="headerlink" title="2. RedisConfig"></a>2. RedisConfig</h3><p>You will use two beans to do configuration. One is for connecting your redis, the other is for defining the redis template.</p>
+<p>The first configuration is normal. It is a JedisConnectionFactory.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> JedisConnectionFactory <span class="title function_">jedisConnectionFactory</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">RedisStandaloneConfiguration</span> <span class="variable">configuration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedisStandaloneConfiguration</span>();</span><br><span class="line">    configuration.setHostName(<span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">    configuration.setPort(<span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">JedisConnectionFactory</span>(configuration);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The second configuration is more complicated because the spring boot can’t know which bean should be autowired. That is RedisTemplate bean, which is used for defining how to store records in redis. A given name is needed to prevent such problem.</p>
+<p>Here is the bean code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean(name=&quot;template&quot;)</span></span><br><span class="line"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">    RedisTemplate&lt;String, Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">    redisTemplate.setConnectionFactory(jedisConnectionFactory());</span><br><span class="line">    redisTemplate.setKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">    redisTemplate.setHashKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">    redisTemplate.setHashKeySerializer(<span class="keyword">new</span> <span class="title class_">JdkSerializationRedisSerializer</span>());</span><br><span class="line">    redisTemplate.setValueSerializer(<span class="keyword">new</span> <span class="title class_">JdkSerializationRedisSerializer</span>());</span><br><span class="line">    redisTemplate.setEnableTransactionSupport(<span class="literal">true</span>);</span><br><span class="line">    redisTemplate.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> redisTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The given name of this bean is “template” right now. When you wanna injected this bean to other class, you should use <code>@Qualifier</code> annotation to declare which bean you really wanna inject.</p>
+<p>Here is the code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;template&quot;)</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate redisTemplate;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Spring-Redis-CRUD"><a href="#3-Spring-Redis-CRUD" class="headerlink" title="3. Spring Redis CRUD"></a>3. Spring Redis CRUD</h3><p>Imagining that you have an entity called User. It is a POJO and its key is long integer property called Id. You should define four methods to create, read, update, and delete your entities. Here is code.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;template&quot;)</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">KEY</span> <span class="operator">=</span> <span class="string">&quot;USER&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">saveUser</span><span class="params">(User user)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        redisTemplate.opsForHash().put(KEY, user.getId(), user);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">fetchAllUser</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;User&gt; users;</span><br><span class="line">    users = redisTemplate.opsForHash().values(KEY);</span><br><span class="line">    <span class="keyword">return</span>  users;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">fetchUserById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">    User user;</span><br><span class="line">    user = (User) redisTemplate.opsForHash().get(KEY, id);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">deleteUser</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        redisTemplate.opsForHash().delete(KEY,id);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">updateUser</span><span class="params">(Long id, User user)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        redisTemplate.opsForHash().put(KEY, id, user);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="In-the-end"><a href="#In-the-end" class="headerlink" title="In the end"></a>In the end</h2><p>I believe that you have a detailed figure about how to use redit as cache in your spring boot project. By using in memory nosql database, you can accelerate your request speed a lot. It can also improve your customers’ experience.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/tutorial/" class="tag">#tutorial</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2021/07/25/The%20Stack%20and%20Frame%20in%20AArch64/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">The Stack and Frame in AArch64</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2020/11/24/How%20to%20install%20Redis%20on%20Mac%20running%20on%20Apple%20silicon/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">How to install Redis on Mac running on Apple silicon</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

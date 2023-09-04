@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>How to use Mongodb - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="How to use Mongodb - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2023/01/24/How%20to%20use%20Mongodb/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2023-01-24T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Mongodb/">Mongodb</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>January</span>
+            <span>24,</span>
+            <span>2023</span>
+        </div>
+        
+
+        <h2 class="title">How to use Mongodb</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="How-to-use-Mongodb"><a href="#How-to-use-Mongodb" class="headerlink" title="How to use Mongodb"></a>How to use Mongodb</h1><h2 id="What-is-Mongodb"><a href="#What-is-Mongodb" class="headerlink" title="What is Mongodb"></a>What is Mongodb</h2><p>Mongodb is an open-source document oriented database developed by Mongodb.Inc. It is classified as a NoSQL database. It is widely used as document database in microservice projects.</p>
+<h2 id="How-to-install-Mongodb"><a href="#How-to-install-Mongodb" class="headerlink" title="How to install Mongodb"></a>How to install Mongodb</h2><p>Mongodb has a lot of good tools for us to put our database on cloud. I don’t really know about it. Therefore, I installed <code>mongodb-atlas</code> at first. However, this is not mongodb running on locally. It contains several shell tools and a project called <code>atlas</code> to create a cluster on your mongodb cloud.</p>
+<p>If you wanna deploy your database on cloud, you can install <code>mongodb-atlas</code> and setup your mongodb atlas.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install mongodb-atlas</span><br><span class="line">atlas setup</span><br></pre></td></tr></table></figure>
+
+<p>If you prefer to run mongodb locally, you should install <a href="mailto:&#x6d;&#x6f;&#110;&#103;&#x6f;&#100;&#98;&#x2d;&#x63;&#111;&#x6d;&#109;&#x75;&#x6e;&#x69;&#116;&#x79;&#x40;&#54;&#46;&#x30;">&#x6d;&#x6f;&#110;&#103;&#x6f;&#100;&#98;&#x2d;&#x63;&#111;&#x6d;&#109;&#x75;&#x6e;&#x69;&#116;&#x79;&#x40;&#54;&#46;&#x30;</a> instead. For more comprehensive and detailed information, you can read this guide <a target="_blank" rel="noopener" href="https://www.mongodb.com/docs/manual/administration/install-community/">Install Mongodb Community Edition</a>.</p>
+<h2 id="Use-Mongodb-in-shell"><a href="#Use-Mongodb-in-shell" class="headerlink" title="Use Mongodb in shell"></a>Use Mongodb in shell</h2><p>It’s very necessary to know how to CRUD in mongodb at first.</p>
+<p>We have a database called <code>use sample_mflix</code> in this tutorial. You can use <code>show dbs</code> to show all databases. <code>show collections</code> can list all collections in your selected(used) database.</p>
+<h3 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h3><p>Insert one record.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">use sample_mflix</span><br><span class="line"></span><br><span class="line">db.<span class="property">movies</span>.<span class="title function_">insertOne</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;The Favourite&quot;</span>,</span><br><span class="line">    <span class="attr">genres</span>: [ <span class="string">&quot;Drama&quot;</span>, <span class="string">&quot;History&quot;</span> ],</span><br><span class="line">    <span class="attr">runtime</span>: <span class="number">121</span>,</span><br><span class="line">    <span class="attr">rated</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">    <span class="attr">year</span>: <span class="number">2018</span>,</span><br><span class="line">    <span class="attr">directors</span>: [ <span class="string">&quot;Yorgos Lanthimos&quot;</span> ],</span><br><span class="line">    <span class="attr">cast</span>: [ <span class="string">&quot;Olivia Colman&quot;</span>, <span class="string">&quot;Emma Stone&quot;</span>, <span class="string">&quot;Rachel Weisz&quot;</span> ],</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;movie&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Insert many records.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">use sample_mflix</span><br><span class="line"></span><br><span class="line">db.<span class="property">movies</span>.<span class="title function_">insertMany</span>([</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&quot;Jurassic World: Fallen Kingdom&quot;</span>,</span><br><span class="line">      <span class="attr">genres</span>: [ <span class="string">&quot;Action&quot;</span>, <span class="string">&quot;Sci-Fi&quot;</span> ],</span><br><span class="line">      <span class="attr">runtime</span>: <span class="number">130</span>,</span><br><span class="line">      <span class="attr">rated</span>: <span class="string">&quot;PG-13&quot;</span>,</span><br><span class="line">      <span class="attr">year</span>: <span class="number">2018</span>,</span><br><span class="line">      <span class="attr">directors</span>: [ <span class="string">&quot;J. A. Bayona&quot;</span> ],</span><br><span class="line">      <span class="attr">cast</span>: [ <span class="string">&quot;Chris Pratt&quot;</span>, <span class="string">&quot;Bryce Dallas Howard&quot;</span>, <span class="string">&quot;Rafe Spall&quot;</span> ],</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;movie&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&quot;Tag&quot;</span>,</span><br><span class="line">      <span class="attr">genres</span>: [ <span class="string">&quot;Comedy&quot;</span>, <span class="string">&quot;Action&quot;</span> ],</span><br><span class="line">      <span class="attr">runtime</span>: <span class="number">105</span>,</span><br><span class="line">      <span class="attr">rated</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">      <span class="attr">year</span>: <span class="number">2018</span>,</span><br><span class="line">      <span class="attr">directors</span>: [ <span class="string">&quot;Jeff Tomsic&quot;</span> ],</span><br><span class="line">      <span class="attr">cast</span>: [ <span class="string">&quot;Annabelle Wallis&quot;</span>, <span class="string">&quot;Jeremy Renner&quot;</span>, <span class="string">&quot;Jon Hamm&quot;</span> ],</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&quot;movie&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<p>Then we can use <code>db.collection_name.find()</code> method to find records we added before.</p>
+<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><p>Read all records.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.movies.find()</span><br><span class="line"></span><br><span class="line">// select * from movies;</span><br></pre></td></tr></table></figure>
+
+<p>Specify Conditions.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">db.movies.find( &#123; &quot;title&quot;: &quot;The Favourite&quot; &#125; )</span><br><span class="line"></span><br><span class="line">// select * from movies where title=&#x27;The Favourite&#x27;;</span><br><span class="line"></span><br><span class="line">db.movies.find( &#123; rated: &#123; $in: [ &quot;PG&quot;, &quot;PG-13&quot; ] &#125; &#125; )</span><br><span class="line"></span><br><span class="line">// select * from movies where rated in (&quot;PG&quot;, &quot;PG-13&quot;);</span><br><span class="line"></span><br><span class="line">// and</span><br><span class="line">db.movies.find( &#123; countries: &quot;Mexico&quot;, &quot;imdb.rating&quot;: &#123; $gte: 7 &#125; &#125; )</span><br><span class="line"></span><br><span class="line">// or</span><br><span class="line">db.movies.find( &#123;</span><br><span class="line">     year: 2010,</span><br><span class="line">     $or: [ &#123; &quot;awards.wins&quot;: &#123; $gte: 5 &#125; &#125;, &#123; genres: &quot;Drama&quot; &#125; ]</span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure>
+
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>Update a single record.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.movies.updateOne( &#123; title: &quot;Tag&quot; &#125;,</span><br><span class="line">&#123;</span><br><span class="line">  $set: &#123;</span><br><span class="line">    plot: &quot;One month every year, five highly competitive friends</span><br><span class="line">           hit the ground running for a no-holds-barred game of tag&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  &#123; $currentDate: &#123; lastUpdated: true &#125; &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Update several records.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.listingsAndReviews.updateMany(</span><br><span class="line">  &#123; security_deposit: &#123; $lt: 100 &#125; &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    $set: &#123; security_deposit: 100, minimum_nights: 1 &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Replace all content except id.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.accounts.replaceOne(</span><br><span class="line">  &#123; account_id: 371138 &#125;,</span><br><span class="line">  &#123; account_id: 893421, limit: 5000, products: [ &quot;Investment&quot;, &quot;Brokerage&quot; ] &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><p>Delete all.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.movies.deleteMany(&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Delete all match some condition.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.movies.deleteMany( &#123; title: &quot;Titanic&quot; &#125; )</span><br></pre></td></tr></table></figure>
+
+<p>Delete only one match some condition.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.movies.deleteOne( &#123; cast: &quot;Brad Pitt&quot; &#125; )</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/tutorial/" class="tag">#tutorial</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2023/04/13/swiftuicoredata/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">A CoreData Template Program for SwiftUI</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2022/09/07/Debugging%20C:C++%20in%20VS%20Code%20macOS/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Debugging C/C++ in VS Code macOS</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

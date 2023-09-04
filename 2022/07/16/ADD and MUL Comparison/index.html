@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Some Data about Speed of Multiplication and Addition - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Some Data about Speed of Multiplication and Addition - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2022/07/16/ADD%20and%20MUL%20Comparison/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2022-07-16T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Assembly-Language/">Assembly Language</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>16,</span>
+            <span>2022</span>
+        </div>
+        
+
+        <h2 class="title">Some Data about Speed of Multiplication and Addition</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Some-Data-about-Speed-of-Multiplication-and-Addition"><a href="#Some-Data-about-Speed-of-Multiplication-and-Addition" class="headerlink" title="Some Data about Speed of Multiplication and Addition"></a>Some Data about Speed of Multiplication and Addition</h1><h2 id="1-Running-34-359-738-367-0x7ffffffff-times"><a href="#1-Running-34-359-738-367-0x7ffffffff-times" class="headerlink" title="1. Running 34,359,738,367 (0x7ffffffff) times"></a>1. Running 34,359,738,367 (0x7ffffffff) times</h2><table>
+<thead>
+<tr>
+<th>program</th>
+<th>real time</th>
+<th>user</th>
+<th>system</th>
+<th>instruction retired</th>
+<th>cycles elapsed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mul</td>
+<td>10.80</td>
+<td>10.77</td>
+<td>0.03</td>
+<td>206,174,586,404</td>
+<td>34,460,405,906</td>
+</tr>
+<tr>
+<td>add</td>
+<td>10.81</td>
+<td>10.77</td>
+<td>0.02</td>
+<td>206,174,961,103</td>
+<td>34,452,388,733</td>
+</tr>
+<tr>
+<td>add</td>
+<td>10.80</td>
+<td>10.76</td>
+<td>0.03</td>
+<td>206,174,196,589</td>
+<td>34,463,690,145</td>
+</tr>
+<tr>
+<td>mul</td>
+<td>10.81</td>
+<td>10.77</td>
+<td>0.03</td>
+<td>206,174,331,889</td>
+<td>34,466,289,391</td>
+</tr>
+</tbody></table>
+<h2 id="2-Running-137-438-953-471-0x1fffffffff-times"><a href="#2-Running-137-438-953-471-0x1fffffffff-times" class="headerlink" title="2. Running 137,438,953,471 (0x1fffffffff) times"></a>2. Running 137,438,953,471 (0x1fffffffff) times</h2><table>
+<thead>
+<tr>
+<th>program</th>
+<th>real time</th>
+<th>user</th>
+<th>system</th>
+<th>instruction retired</th>
+<th>cycles elapsed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>add</td>
+<td>43.12</td>
+<td>42.98</td>
+<td>0.12</td>
+<td>824,684,047,224</td>
+<td>137,845,540,756</td>
+</tr>
+<tr>
+<td>mul</td>
+<td>43.26</td>
+<td>43.05</td>
+<td>0.19</td>
+<td>824,706,262,533</td>
+<td>138,088,583,489</td>
+</tr>
+<tr>
+<td>mul</td>
+<td>43.11</td>
+<td>42.99</td>
+<td>0.09</td>
+<td>824,678,165,222</td>
+<td>137,763,496,059</td>
+</tr>
+<tr>
+<td>add</td>
+<td>43.11</td>
+<td>42.99</td>
+<td>0.10</td>
+<td>824,680,759,525</td>
+<td>137,775,698,560</td>
+</tr>
+</tbody></table>
+<h2 id="3-Code"><a href="#3-Code" class="headerlink" title="3. Code"></a>3. Code</h2><p>add.s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.include &quot;debug.s&quot;</span><br><span class="line">.global main</span><br><span class="line">.p2align 2</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">        mov     w1,     #1</span><br><span class="line">        mov     w2,     #2</span><br><span class="line">        mov     w4,     w1</span><br><span class="line">        mov     w5,     w2</span><br><span class="line">        mov     x3,     #0xffff</span><br><span class="line">        movk    x3,     #0xffff,    lsl #16</span><br><span class="line">        movk    x3,     #0x0007,    lsl #32</span><br><span class="line">        movk    x3,     #0x0000,    lsl #48</span><br><span class="line">loop:   subs    x3,     x3,     #1</span><br><span class="line">        b.eq    print</span><br><span class="line">        add     w1,     w1,     w2</span><br><span class="line">        mov     w1,     w4</span><br><span class="line">        mov     w2,     w5</span><br><span class="line">        b       loop</span><br><span class="line">print:  printReg    1</span><br><span class="line"></span><br><span class="line">				// return 0</span><br><span class="line">        mov     x0,     #0</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure>
+
+<p>mul.s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.include &quot;debug.s&quot;</span><br><span class="line">.global main</span><br><span class="line">.p2align 2</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">        mov     w1,     #1</span><br><span class="line">        mov     w2,     #2</span><br><span class="line">        mov     w4,     w1</span><br><span class="line">        mov     w5,     w2</span><br><span class="line">        mov     x3,     #0xffff</span><br><span class="line">        movk    x3,     #0xffff,    lsl #16</span><br><span class="line">        movk    x3,     #0x0007,    lsl #32</span><br><span class="line">        movk    x3,     #0x0000,    lsl #48</span><br><span class="line">loop:   subs    x3,     x3,     #1</span><br><span class="line">        b.eq    print</span><br><span class="line">        smull   x1,     w1,     w2</span><br><span class="line">        mov     w1,     w4</span><br><span class="line">        mov     w2,     w5</span><br><span class="line">        b       loop</span><br><span class="line">print:  printReg    1</span><br><span class="line"></span><br><span class="line">				// return 0</span><br><span class="line">        mov     x0,     #0</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure>
+
+<p><strong>Same points in these two programs</strong></p>
+<ul>
+<li>Same registers<ul>
+<li>w1, w2: operation register;</li>
+<li>x1: destination register;</li>
+<li>x3: index register;</li>
+<li>x0: kernel parameter;</li>
+</ul>
+</li>
+<li>Same statements<ul>
+<li>w1 &#x3D; 1, w2 &#x3D; 2;</li>
+<li>w4 &#x3D; w1, w5 &#x3D; w2;</li>
+<li>same loop logic;</li>
+<li>w1 and w2 are assigned by their initial value;</li>
+<li>same printReg:<ul>
+<li>store x0-x18 and lr (general registers) to stack;</li>
+<li>put the parameters from x0 to x3;</li>
+<li>put x1-x3 to stack;</li>
+<li>invoke <code>_printf</code>;</li>
+<li>load x0-x18 and lr (general registers) from stack;</li>
+</ul>
+</li>
+<li>return 0;</li>
+</ul>
+</li>
+</ul>
+<p>The only difference between these two programs is add and smull.</p>
+<h2 id="4-First-Conclusion"><a href="#4-First-Conclusion" class="headerlink" title="4. First Conclusion"></a>4. First Conclusion</h2><p>These two given tables illustrate the performance difference between multiplication and addition instructions for integers arithmetic. Overall, it proves that addition instructions execute faster tha multiplication instructions for integers.</p>
+<p>Firstly take a look at the first table. This table sorted those records by time and these two programs compiled just once. Time usage of these executions are very near. The total time is about 10.80s and system time is 0.03s approximately. However, <code>add</code> can be completed by 10.76s at least, which is 0.01s faster than <code>mul</code> can. As for instruction retired, <code>mul</code> has 206,174,586,404 retired instructions, which is above 400,000 less than <code>add</code> has. If they execute again, they both can get about 400,000 retired instructions decrease. They both have similar cycle elapsed in their two executions. <code>mul</code> needs more cycles than <code>add</code> in order to complete its task.</p>
+<p>Regarding the second tables, time, instruction retired and cycle elapsed all have a very huge growth because the loop round number is much larger. The total time in four recordings is about 43s and system time is 0.10s approximately. In first round(i.e. the first two records), <code>add</code> needs 42.98s to run, which is 0.07s less than <code>mul</code> needs. With the optimisation of system, they can have the same performance, 42.99s. They need 840 billions retired instruction and about 137 cycles to finish the task.</p>
+<p>All in all, with the improvement made by processor, <code>mul</code> and <code>add</code> can have a similar performance. But at first time, <code>add</code> performs better without any optimisation. Thus we can get the conclusion that addition instructions execute faster than multiplications.</p>
+<h2 id="5-Code-Improve"><a href="#5-Code-Improve" class="headerlink" title="5. Code Improve"></a>5. Code Improve</h2><p>I learn that C programming language provides efficient library to measure the clock and time used in the program. Therefore I update the code in order to get rid of the time command. All in all, using in-code method to measure the clock and time used is more accuracy and elegant than using time command provided by UNIX. Here are the two updated codes.</p>
+<p>add.s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">.include &quot;debug.s&quot;</span><br><span class="line">.global main</span><br><span class="line">.p2align 2</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">        mov     w1,     #1</span><br><span class="line">        mov     w2,     #2</span><br><span class="line">        mov     w4,     w1</span><br><span class="line">        mov     w5,     w2</span><br><span class="line">        mov     x3,     #0xffff</span><br><span class="line">        movk    x3,     #0xffff,    lsl #16</span><br><span class="line">        movk    x3,     #0x0007,    lsl #32</span><br><span class="line">        movk    x3,     #0x0000,    lsl #48</span><br><span class="line"></span><br><span class="line">        // start clock</span><br><span class="line">        stp     fp,     lr,     [sp, #-16]!</span><br><span class="line">        bl      _clock</span><br><span class="line">        ldp     fp,     lr,     [sp],   #16</span><br><span class="line">        mov     x8,     x0</span><br><span class="line">        str     x8,     [sp, #-16]!</span><br><span class="line"></span><br><span class="line">        // do add for x3-1 times</span><br><span class="line">loop:   subs    x3,     x3,     #1</span><br><span class="line">        b.eq    after</span><br><span class="line">        add     w1,     w1,     w2</span><br><span class="line">        mov     w1,     w4</span><br><span class="line">        mov     w2,     w5</span><br><span class="line">        b       loop</span><br><span class="line"></span><br><span class="line">        // end clock</span><br><span class="line">after:  stp     fp,     lr,     [sp, #-16]!</span><br><span class="line">        bl      _clock</span><br><span class="line">        ldp     fp,     lr,     [sp],   #16</span><br><span class="line">        mov     x9,     x0</span><br><span class="line">        str     x9,     [sp, #8]</span><br><span class="line"></span><br><span class="line">        // calculate</span><br><span class="line">        mov     x10,    #0x4240</span><br><span class="line">        movk    x10,    #0xf,   lsl #16</span><br><span class="line">        ldp     x8,     x9,     [sp]</span><br><span class="line">        ldr     x7,     [sp]</span><br><span class="line">        scvtf   d8,     x8</span><br><span class="line">        scvtf   d9,     x9</span><br><span class="line">        scvtf   d10,    x10</span><br><span class="line">        fsub    d8,     d9,     d8</span><br><span class="line">        fdiv    d8,     d8,     d10</span><br><span class="line">        fmov    x8,     d8</span><br><span class="line"></span><br><span class="line">        // results</span><br><span class="line">        printStr        &quot;Add instructions speed test&quot;</span><br><span class="line">        printStr        &quot;Start Clock:&quot;</span><br><span class="line">        printReg        7</span><br><span class="line">        printStr        &quot;End Clock:&quot;</span><br><span class="line">        printReg        9</span><br><span class="line">        printStr        &quot;Time used:&quot;</span><br><span class="line">        printDouble     8</span><br><span class="line">        printStr        &quot;&quot;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">		// return 0</span><br><span class="line">        mov     x0,     #0</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure>
+
+<p>mul.s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">.include &quot;debug.s&quot;</span><br><span class="line">.global main</span><br><span class="line">.p2align 2</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">        mov     w1,     #1</span><br><span class="line">        mov     w2,     #2</span><br><span class="line">        mov     w4,     w1</span><br><span class="line">        mov     w5,     w2</span><br><span class="line">        mov     x3,     #0xffff</span><br><span class="line">        movk    x3,     #0xffff,    lsl #16</span><br><span class="line">        movk    x3,     #0x0007,    lsl #32</span><br><span class="line">        movk    x3,     #0x0000,    lsl #48</span><br><span class="line"></span><br><span class="line">        // start clock</span><br><span class="line">        stp     fp,     lr,     [sp, #-16]!</span><br><span class="line">        bl      _clock</span><br><span class="line">        ldp     fp,     lr,     [sp],   #16</span><br><span class="line">        mov     x8,     x0</span><br><span class="line">        str     x8,     [sp, #-16]!</span><br><span class="line"></span><br><span class="line">        // do add for x3-1 times</span><br><span class="line">loop:   subs    x3,     x3,     #1</span><br><span class="line">        b.eq    after</span><br><span class="line">        smull   x1,     w1,     w2</span><br><span class="line">        mov     w1,     w4</span><br><span class="line">        mov     w2,     w5</span><br><span class="line">        b       loop</span><br><span class="line"></span><br><span class="line">        // end clock</span><br><span class="line">after:  stp     fp,     lr,     [sp, #-16]!</span><br><span class="line">        bl      _clock</span><br><span class="line">        ldp     fp,     lr,     [sp],   #16</span><br><span class="line">        mov     x9,     x0</span><br><span class="line">        str     x9,     [sp, #8]</span><br><span class="line"></span><br><span class="line">        // calculate</span><br><span class="line">        mov     x10,    #0x4240</span><br><span class="line">        movk    x10,    #0xf,   lsl #16</span><br><span class="line">        ldp     x8,     x9,     [sp]</span><br><span class="line">        ldr     x7,     [sp]</span><br><span class="line">        scvtf   d8,     x8</span><br><span class="line">        scvtf   d9,     x9</span><br><span class="line">        scvtf   d10,    x10</span><br><span class="line">        fsub    d8,     d9,     d8</span><br><span class="line">        fdiv    d8,     d8,     d10</span><br><span class="line">        fmov    x8,     d8</span><br><span class="line"></span><br><span class="line">        // results</span><br><span class="line">        printStr        &quot;Mul instructions speed test&quot;</span><br><span class="line">        printStr        &quot;Start Clock:&quot;</span><br><span class="line">        printReg        7</span><br><span class="line">        printStr        &quot;End Clock:&quot;</span><br><span class="line">        printReg        9</span><br><span class="line">        printStr        &quot;Time used:&quot;</span><br><span class="line">        printDouble     8</span><br><span class="line">        printStr        &quot;&quot;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">		// return 0</span><br><span class="line">        mov     x0,     #0</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/experience/" class="tag">#experience</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2022/08/14/CreateYourOwnJDKEnvironment/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">How to Create Your Own JDK Environment</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2022/04/27/InstallGoFromSource/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Install Golang from Source Code</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

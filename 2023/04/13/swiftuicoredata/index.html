@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>A CoreData Template Program for SwiftUI - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="A CoreData Template Program for SwiftUI - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2023/04/13/swiftuicoredata/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2023-04-13T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/iOS-guidence/">iOS - guidence</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>April</span>
+            <span>13,</span>
+            <span>2023</span>
+        </div>
+        
+
+        <h2 class="title">A CoreData Template Program for SwiftUI</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="A-CoreData-Template-Program-for-SwiftUI"><a href="#A-CoreData-Template-Program-for-SwiftUI" class="headerlink" title="A CoreData Template Program for SwiftUI"></a>A CoreData Template Program for SwiftUI</h1><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> CoreData</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ContentView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(\.managedObjectContext) <span class="keyword">private</span> <span class="keyword">var</span> viewContext</span><br><span class="line"></span><br><span class="line">    <span class="meta">@FetchRequest</span>(</span><br><span class="line">        sortDescriptors: [<span class="type">NSSortDescriptor</span>(keyPath: \<span class="type">Item</span>.timestamp, ascending: <span class="literal">true</span>)],</span><br><span class="line">        animation: .default)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> items: <span class="type">FetchedResults</span>&lt;<span class="type">Item</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">NavigationView</span> &#123;</span><br><span class="line">            <span class="type">List</span> &#123;</span><br><span class="line">                <span class="type">ForEach</span>(items) &#123; item <span class="keyword">in</span></span><br><span class="line">                    <span class="type">NavigationLink</span> &#123;</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Item at <span class="subst">\(item.timestamp<span class="operator">!</span>, formatter: itemFormatter)</span>&quot;</span>)</span><br><span class="line">                    &#125; label: &#123;</span><br><span class="line">                        <span class="type">Text</span>(item.timestamp<span class="operator">!</span>, formatter: itemFormatter)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                .onDelete(perform: deleteItems)</span><br><span class="line">            &#125;</span><br><span class="line">            .toolbar &#123;</span><br><span class="line">                <span class="type">ToolbarItem</span> &#123;</span><br><span class="line">                    <span class="type">Button</span>(action: addItem) &#123;</span><br><span class="line">                        <span class="type">Label</span>(<span class="string">&quot;Add Item&quot;</span>, systemImage: <span class="string">&quot;plus&quot;</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;Select an item&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">func</span> <span class="title function_">addItem</span>() &#123;</span><br><span class="line">        withAnimation &#123;</span><br><span class="line">            <span class="keyword">let</span> newItem <span class="operator">=</span> <span class="type">Item</span>(context: viewContext)</span><br><span class="line">            newItem.timestamp <span class="operator">=</span> <span class="type">Date</span>()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">try</span> viewContext.save()</span><br><span class="line">            &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">                <span class="comment">// Replace this implementation with code to handle the error appropriately.</span></span><br><span class="line">                <span class="comment">// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.</span></span><br><span class="line">                <span class="keyword">let</span> nsError <span class="operator">=</span> error <span class="keyword">as</span> <span class="type">NSError</span></span><br><span class="line">                <span class="built_in">fatalError</span>(<span class="string">&quot;Unresolved error <span class="subst">\(nsError)</span>, <span class="subst">\(nsError.userInfo)</span>&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">func</span> <span class="title function_">deleteItems</span>(<span class="params">offsets</span>: <span class="type">IndexSet</span>) &#123;</span><br><span class="line">        withAnimation &#123;</span><br><span class="line">            offsets.map &#123; items[<span class="variable">$0</span>] &#125;.forEach(viewContext.delete)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">try</span> viewContext.save()</span><br><span class="line">            &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">                <span class="comment">// Replace this implementation with code to handle the error appropriately.</span></span><br><span class="line">                <span class="comment">// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.</span></span><br><span class="line">                <span class="keyword">let</span> nsError <span class="operator">=</span> error <span class="keyword">as</span> <span class="type">NSError</span></span><br><span class="line">                <span class="built_in">fatalError</span>(<span class="string">&quot;Unresolved error <span class="subst">\(nsError)</span>, <span class="subst">\(nsError.userInfo)</span>&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> itemFormatter: <span class="type">DateFormatter</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> formatter <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">    formatter.dateStyle <span class="operator">=</span> .short</span><br><span class="line">    formatter.timeStyle <span class="operator">=</span> .medium</span><br><span class="line">    <span class="keyword">return</span> formatter</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ContentView_Previews</span>: <span class="title class_">PreviewProvider</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> previews: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">ContentView</span>().environment(\.managedObjectContext, <span class="type">PersistenceController</span>.preview.container.viewContext)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2023/05/23/macOS%20Bug%20Fix/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">macOS Bug Fix</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2023/01/24/How%20to%20use%20Mongodb/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">How to use Mongodb</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

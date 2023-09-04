@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>macOS assembly language program analysis (m1 chip) - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="macOS assembly language program analysis (m1 chip) - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2020/09/17/macOS%20%E6%B1%87%E7%BC%96/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2020-09-17T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/assembly-language-tutorial/">assembly language - tutorial</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>September</span>
+            <span>17,</span>
+            <span>2020</span>
+        </div>
+        
+
+        <h2 class="title">macOS assembly language program analysis (m1 chip)</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="一个-macOS-汇编的分析（M1-芯片）"><a href="#一个-macOS-汇编的分析（M1-芯片）" class="headerlink" title="一个 macOS 汇编的分析（M1 芯片）"></a>一个 macOS 汇编的分析（M1 芯片）</h2><h3 id="1-代码"><a href="#1-代码" class="headerlink" title="1. 代码"></a>1. 代码</h3><p>源文件 <code>main.c</code> 代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">long</span> <span class="type">long</span> <span class="type">int</span> v[], <span class="type">size_t</span> k)</span> &#123;</span><br><span class="line">    __asm__ __volatile__ (</span><br><span class="line">                          <span class="string">&quot;lsl x10, x1, #3\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;add x10, x0, x10\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;ldur x9, [x10, #0]\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;ldur x11, [x10, #8]\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;stur x11, [x10, #0]\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;stur x9, [x10, #8]&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> num[<span class="number">3</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    swap(num, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>, num[<span class="number">1</span>], num[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>swap 函数实现了语句 <code>v[k]  &lt;--&gt; v[k+1]</code>，将两个元素进行交换，注意，这里使用了内联汇编。</p>
+<p>执行以后的 <code>main.s</code> 文件代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">	.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">	.build_version macos, 11, 0	sdk_version 11, 3</span><br><span class="line">	.globl	_swap                           ; -- Begin function swap</span><br><span class="line">	.p2align	2</span><br><span class="line">_swap:                                  ; @swap</span><br><span class="line">	.cfi_startproc</span><br><span class="line">; %bb.0:</span><br><span class="line">	sub	sp, sp, #16                     ; =16</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	str	x0, [sp, #8]</span><br><span class="line">	str	x1, [sp]</span><br><span class="line">	; InlineAsm Start</span><br><span class="line">	lsl	x10, x1, #3</span><br><span class="line">	add	x10, x0, x10</span><br><span class="line">	ldur	x9, [x10]</span><br><span class="line">	ldur	x11, [x10, #8]</span><br><span class="line">	stur	x11, [x10]</span><br><span class="line">	stur	x9, [x10, #8]</span><br><span class="line">	; InlineAsm End</span><br><span class="line">	add	sp, sp, #16                     ; =16</span><br><span class="line">	ret</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ; -- End function</span><br><span class="line">	.globl	_main                           ; -- Begin function main</span><br><span class="line">	.p2align	2</span><br><span class="line">_main:                                  ; @main</span><br><span class="line">	.cfi_startproc</span><br><span class="line">; %bb.0:</span><br><span class="line">	sub	sp, sp, #80                     ; =80</span><br><span class="line">	stp	x29, x30, [sp, #64]             ; 16-byte Folded Spill</span><br><span class="line">	add	x29, sp, #64                    ; =64</span><br><span class="line">	.cfi_def_cfa w29, 16</span><br><span class="line">	.cfi_offset w30, -8</span><br><span class="line">	.cfi_offset w29, -16</span><br><span class="line">	adrp	x8, ___stack_chk_guard@GOTPAGE</span><br><span class="line">	ldr	x8, [x8, ___stack_chk_guard@GOTPAGEOFF]</span><br><span class="line">	ldr	x8, [x8]</span><br><span class="line">	stur	x8, [x29, #-8]</span><br><span class="line">	str	wzr, [sp, #28]</span><br><span class="line">	str	w0, [sp, #24]</span><br><span class="line">	str	x1, [sp, #16]</span><br><span class="line">	adrp	x8, l___const.main.num@PAGE</span><br><span class="line">	add	x8, x8, l___const.main.num@PAGEOFF</span><br><span class="line">	ldr	q0, [x8]</span><br><span class="line">	add	x0, sp, #32                     ; =32</span><br><span class="line">	str	q0, [sp, #32]</span><br><span class="line">	ldr	x8, [x8, #16]</span><br><span class="line">	str	x8, [sp, #48]</span><br><span class="line">	mov	x1, #1</span><br><span class="line">	bl	_swap</span><br><span class="line">	ldr	x8, [sp, #40]</span><br><span class="line">	ldr	x9, [sp, #48]</span><br><span class="line">	adrp	x0, l_.str@PAGE</span><br><span class="line">	add	x0, x0, l_.str@PAGEOFF</span><br><span class="line">	mov	x10, sp</span><br><span class="line">	str	x8, [x10]</span><br><span class="line">	str	x9, [x10, #8]</span><br><span class="line">	bl	_printf</span><br><span class="line">	adrp	x8, ___stack_chk_guard@GOTPAGE</span><br><span class="line">	ldr	x8, [x8, ___stack_chk_guard@GOTPAGEOFF]</span><br><span class="line">	ldr	x8, [x8]</span><br><span class="line">	ldur	x9, [x29, #-8]</span><br><span class="line">	subs	x8, x8, x9</span><br><span class="line">	b.ne	LBB1_2</span><br><span class="line">; %bb.1:</span><br><span class="line">	mov	w8, #0</span><br><span class="line">	mov	x0, x8</span><br><span class="line">	ldp	x29, x30, [sp, #64]             ; 16-byte Folded Reload</span><br><span class="line">	add	sp, sp, #80                     ; =80</span><br><span class="line">	ret</span><br><span class="line">LBB1_2:</span><br><span class="line">	bl	___stack_chk_fail</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ; -- End function</span><br><span class="line">	.section	__TEXT,__const</span><br><span class="line">	.p2align	3                               ; @__const.main.num</span><br><span class="line">l___const.main.num:</span><br><span class="line">	.quad	1                               ; 0x1</span><br><span class="line">	.quad	2                               ; 0x2</span><br><span class="line">	.quad	3                               ; 0x3</span><br><span class="line"></span><br><span class="line">	.section	__TEXT,__cstring,cstring_literals</span><br><span class="line">l_.str:                                 ; @.str</span><br><span class="line">	.asciz	&quot;%lld %lld\007n&quot;</span><br><span class="line"></span><br><span class="line">.subsections_via_symbols</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">.build_version macos, 11, 0	sdk_version 11, 3</span><br></pre></td></tr></table></figure>
+
+<p>首先，定义了一个节（section）属于__Text 段的 _text 节，属于常规（regular）类型，属性为纯指令（pure_instructions）。</p>
+<p>随后指定了构建系统版本（macOS 11.0）和 SDK 版本（11.3）。</p>
+<p>然后开始定义 swap 函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">	.globl	_swap                           ; -- Begin function swap</span><br><span class="line">	.p2align	2</span><br><span class="line">_swap:                                  ; @swap</span><br><span class="line">	.cfi_startproc</span><br><span class="line">; %bb.0:</span><br><span class="line">	sub	sp, sp, #16                     ; =16</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	str	x0, [sp, #8]</span><br><span class="line">	str	x1, [sp]</span><br><span class="line">	; InlineAsm Start</span><br><span class="line">	lsl	x10, x1, #3</span><br><span class="line">	add	x10, x0, x10</span><br><span class="line">	ldur	x9, [x10]</span><br><span class="line">	ldur	x11, [x10, #8]</span><br><span class="line">	stur	x11, [x10]</span><br><span class="line">	stur	x9, [x10, #8]</span><br><span class="line">	; InlineAsm End</span><br><span class="line">	add	sp, sp, #16                     ; =16</span><br><span class="line">	ret</span><br><span class="line">	.cfi_endproc</span><br></pre></td></tr></table></figure>
+
+<p>首先前三行申明了函数名称和指令对齐方式，其中<code>.p2align </code>伪指令指定指令以 2^x 字节对齐，由于 arm 指令集定长为 32 位，即 4 字节，所以对齐方式为 4 字节对齐。<code>.cfi_startproc</code>和<code>.cfi_endproc</code>定义了一段代码的开始与结束，在这之间写汇编指令。</p>
+<p>这里要说明的是，arm64 要求栈的对齐方式为16字节，由于 swap 的这两个参数均为 64 位，即 8 字节，所以只需要开一个 16 字节的栈就可以了。和 x86 类似，栈也是从高地址向低地址生长，且参数由右向左入栈，所以 x0 存放的是 v 数组的基地址，x1 存放的是 k 的值，由于 <code>long long int</code> 数据类型一个占 8 字节，所以需要将 k * 8 才能找到 <code>&amp;v[k]</code>。然后通过一系列 <code>load/store</code> 交换内存这两个元素的值，最后清空栈，也就是将 sp 加 16，然后通过 ret 指令设置 pc 程序计数寄存器返回到调用者。</p>
+<p>然后开始定义 main 函数。在操作系统看来，<code>main</code> 函数和其他函数并没有什么不同，由于它是用户编写程序的入口，调用者是操作系统，执行完毕或出现异常之后要返回到操作系统，所以 main 函数第一步需要做的是定义对栈，然后将操作系统在执行 main 函数的 fp 信息和 sp 信息存储下来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sub	sp, sp, #80                     ; =80</span><br><span class="line">stp	x29, x30, [sp, #64]             ; 16-byte Folded Spill</span><br><span class="line">add	x29, sp, #64                    ; =64</span><br><span class="line">.cfi_def_cfa w29, 16</span><br><span class="line">.cfi_offset w30, -8</span><br><span class="line">.cfi_offset w29, -16</span><br></pre></td></tr></table></figure>
+
+<p>首先是建立堆栈，这里的对栈也是 16 字节对齐。这里建立了一个五个元素的对栈。其中，第一个元素有 16 字节，可以存放 fp 和 lr 的值。然后栈顶指向第四个元素的下面第一个字节表示现在堆栈为空。<code>.cfi_def_cfa</code> 其中 <code>cfi</code> 指的是 call from info，是 DWARF 2.0 规定的堆栈信息。<code>cfa</code> 指的是 <code>canonical frame address</code> 规范堆栈框，这是定义了该程序所有函数的基地址，其基地址是原先 x29 寄存器加 16，即我们开的80字节堆栈的栈底。然后又定义了 fp 和 sp 相对于 cfa 的偏移。整个对栈此时的情况如下。</p>
+<table>
+<thead>
+<tr>
+<th>相对地址（以执行程序前 sp 地址为相对零地址）</th>
+<th>存放内容</th>
+<th>字节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>+16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>+32</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>+48</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>+64</td>
+<td>FP</td>
+<td>低 8 字节</td>
+</tr>
+<tr>
+<td></td>
+<td>LR</td>
+<td>高 8 字节</td>
+</tr>
+<tr>
+<td>+80</td>
+<td>CFA</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>然后通过暂存寄存器 x8 去检查堆栈是否发生错误，指令如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adrp	x8, ___stack_chk_guard@GOTPAGE</span><br><span class="line">ldr	x8, [x8, ___stack_chk_guard@GOTPAGEOFF]</span><br><span class="line">ldr	x8, [x8]</span><br></pre></td></tr></table></figure>
+
+<p>首先，先从编译器堆栈保护函数处获取页号将基地址对应到 x8 上，然后加载页偏移处 x8 的值，这也是一个地址，最后通过这个地址找到该值并且将其送入到 x8 中。接着，这几步看不大懂。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stur	x8, [x29, #-8]</span><br><span class="line">str	wzr, [sp, #28]</span><br><span class="line">str	w0, [sp, #24]</span><br><span class="line">str	x1, [sp, #16]</span><br></pre></td></tr></table></figure>
+
+<p>然后在堆栈中存储程序中的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">adrp	x8, l___const.main.num@PAGE</span><br><span class="line">add	x8, x8, l___const.main.num@PAGEOFF</span><br><span class="line">ldr	q0, [x8]</span><br><span class="line">add	x0, sp, #32                     ; =32</span><br><span class="line">str	q0, [sp, #32]</span><br><span class="line">ldr	x8, [x8, #16]</span><br><span class="line">str	x8, [sp, #48]</span><br><span class="line">mov	x1, #1</span><br></pre></td></tr></table></figure>
+
+<p>前两句赋给 x8 寄存器 &amp;num，然后将从 sp + 32 开始的 4 个 <code>long long int</code> 大小的地方存 num 数组。注意，这里的存储是小端存储。</p>
+<p>之后就是执行 <code>printf</code> 函数了。</p>
+<h3 id="3-从-s-编译到可执行程序"><a href="#3-从-s-编译到可执行程序" class="headerlink" title="3. 从 .s 编译到可执行程序"></a>3. 从 .s 编译到可执行程序</h3><p>.s –&gt; .o</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">as -o &lt;filename&gt;.o &lt;filename&gt;.s</span><br></pre></td></tr></table></figure>
+
+<p>.o –&gt; executive file (binary file)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ld -o &lt;filename&gt; &lt;filename&gt;.o</span><br><span class="line">-lSysten</span><br><span class="line">-syslibroot `xcrun -sdk macosx --show-sdk-path`</span><br><span class="line">-e start</span><br><span class="line">-arch arm64</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-lSystem: tell the linker to link executable with <code>libSystem.dylib</code></li>
+<li>-syslibroot: it’s mandatory to tell the linker where to find <code>libSystem.dylib</code></li>
+<li><code>xcrun -sdk -macosx --show-sdk-path</code>: dynamically use the currently active version of Xcode</li>
+<li>-e start: tell the linker <code>start</code> is the entrypoint of our program (Darwin expects <code>main</code> by default)</li>
+<li>-arch arm64: tell the linker our architecture is arm64, which is optional if you use apple silicon mac</li>
+</ul>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2020/11/24/How%20to%20install%20Redis%20on%20Mac%20running%20on%20Apple%20silicon/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">How to install Redis on Mac running on Apple silicon</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2020/05/13/git_basic_tutorial/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Git Basic Tutorial</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

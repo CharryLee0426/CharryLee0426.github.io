@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>How to install Redis on Mac running on Apple silicon - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="How to install Redis on Mac running on Apple silicon - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2020/11/24/How%20to%20install%20Redis%20on%20Mac%20running%20on%20Apple%20silicon/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2020-11-24T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Redis/">Redis</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>November</span>
+            <span>24,</span>
+            <span>2020</span>
+        </div>
+        
+
+        <h2 class="title">How to install Redis on Mac running on Apple silicon</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="How-to-install-Redis-on-Mac-running-on-Apple-silicon"><a href="#How-to-install-Redis-on-Mac-running-on-Apple-silicon" class="headerlink" title="How to install Redis on Mac running on Apple silicon"></a>How to install Redis on Mac running on Apple silicon</h2><h3 id="1-Make-sure-that-you-have-installed-homebrew"><a href="#1-Make-sure-that-you-have-installed-homebrew" class="headerlink" title="1. Make sure that you have installed homebrew"></a>1. Make sure that you have installed homebrew</h3><p>You can install redis without homebrew surely, but you’d better install it with homebrew because it makes you easier.</p>
+<p>For installing homebrew on Mac running on Apple silicon, you can see this website:</p>
+<p><a target="_blank" rel="noopener" href="https://www.igeeksblog.com/how-to-install-homebrew-on-mac/">https://www.igeeksblog.com/how-to-install-homebrew-on-mac/</a></p>
+<h3 id="2-Install-redis"><a href="#2-Install-redis" class="headerlink" title="2. Install redis"></a>2. Install redis</h3><p>Use the following simple command to install redis:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew install redis</span></span><br></pre></td></tr></table></figure>
+
+<p>If you really don’t want to install it with homebrew, you can see the official website of redis to install.</p>
+<p><a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io</a></p>
+<h3 id="3-How-to-start"><a href="#3-How-to-start" class="headerlink" title="3. How to start"></a>3. How to start</h3><p>After install, you can start the service backgroundly or just in a terminal.</p>
+<h4 id="3-1-backgroundly"><a href="#3-1-backgroundly" class="headerlink" title="3.1 backgroundly"></a>3.1 backgroundly</h4><p>Use the following simple command to start service backgoundly:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew services start redis</span></span><br></pre></td></tr></table></figure>
+
+<p>If success, you will see that:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Successfully started `redis` (label: homebrew.mxcl.redis)</span><br></pre></td></tr></table></figure>
+
+<p>Then you can do other things in this terminal window.</p>
+<h4 id="3-2-Redis-server"><a href="#3-2-Redis-server" class="headerlink" title="3.2 Redis-server"></a>3.2 Redis-server</h4><p>You can use <code>redis-server</code> to start the redis.</p>
+<p>However, if you want use redis, you can’t close this terminal because redis-server still runs on it.</p>
+<h3 id="4-How-to-operate-the-Redis"><a href="#4-How-to-operate-the-Redis" class="headerlink" title="4. How to operate the Redis"></a>4. How to operate the Redis</h3><p>After starting the service, you can use <code>redis-cli</code>, a simple command line tool to CRUD. You can also use some visual IDE such as Navicat or Data Grip.</p>
+<p>The default port is <code>6379</code>. (What a strange number!)</p>
+<h3 id="5-How-to-stop-the-Redis"><a href="#5-How-to-stop-the-Redis" class="headerlink" title="5. How to stop the Redis"></a>5. How to stop the Redis</h3><p>You can test if your redis service is running by using <code>redis-li ping</code>. If the response is <code>Pong</code>, it just tells you that your service is running now.</p>
+<p>Use the following command to stop service backgroundly:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew services stop redis</span></span><br></pre></td></tr></table></figure>
+
+<p>If success, you will see that:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Successfully stopped `redis` (label: homebrew.mxcl.redis)</span><br></pre></td></tr></table></figure>
+
+<p>After that, when you test with <code>redis-cli ping</code> again, you will see that warning <code>Could not connect to Redis at 127.0.0.1:6379: Connection refused</code>.</p>
+<h3 id="In-the-end"><a href="#In-the-end" class="headerlink" title="In the end"></a>In the end</h3><p>I hope that this article can help you to install and use Redis. And it’s also my first English technical article.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/guidence/" class="tag">#guidence</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2021/01/13/How%20to%20Use%20Redis/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">How to use Reids</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2020/09/17/macOS%20%E6%B1%87%E7%BC%96/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">macOS assembly language program analysis (m1 chip)</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

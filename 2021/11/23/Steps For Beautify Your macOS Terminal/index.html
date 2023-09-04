@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Steps For Beautify Your macOS Terminal - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Steps For Beautify Your macOS Terminal - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2021/11/23/Steps%20For%20Beautify%20Your%20macOS%20Terminal/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2021-11-23T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/macOS-guidence/">macOS - guidence</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>November</span>
+            <span>23,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">Steps For Beautify Your macOS Terminal</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Steps-For-Beautify-Your-macOS-Terminal"><a href="#Steps-For-Beautify-Your-macOS-Terminal" class="headerlink" title="Steps For Beautify Your macOS Terminal"></a>Steps For Beautify Your macOS Terminal</h1><h2 id="0-Brief-Introduction"><a href="#0-Brief-Introduction" class="headerlink" title="0. Brief Introduction"></a>0. Brief Introduction</h2><p>MacBook is one of the most popular laptops for programmers because macOS is the only UNIX certified operating system. For our programmer, <code>terminal.app</code> is our most frequently used app. You can work more efficiently if your terminal is more beautiful. When you first get a MacBook, you should beautify your terminal in time. Follow this step-by-step guide, you can get such a beautiful terminal.</p>
+<p><img src="https://pic.imgdb.cn/item/621e31df2ab3f51d91e8731f.png"></p>
+<center><i>System Default Terminal(previous)</i></center>
+
+<img src="https://pic.imgdb.cn/item/621e32502ab3f51d91e95b46.png" style="zoom: 50%;" />
+
+<center><i>Final Terminal🎉</i></center>
+
+<h2 id="1-Prerequisites"><a href="#1-Prerequisites" class="headerlink" title="1. Prerequisites"></a>1. Prerequisites</h2><p>When you first get a MacBook, you should install some tools and plugins. I list some of the most useful you should install below:</p>
+<ul>
+<li>Xcode command line tools, include <strong>clang</strong>、<strong>python2</strong>、<strong>git</strong>；</li>
+<li>Homebrew🍺;</li>
+<li>Node.js;</li>
+<li>Python3;</li>
+</ul>
+<blockquote>
+<p>‼️WARNING‼️：For readers in China mainland, you’d better set a proxy that can get data from International Internet before the install process.</p>
+<p>‼️     警告     ‼️：对于在中国大陆的读者，在开始安装进程前您最好设置好可以访问国际互联网的代理。</p>
+</blockquote>
+<h3 id="1-1-Xcode-command-line-tools"><a href="#1-1-Xcode-command-line-tools" class="headerlink" title="1.1 Xcode command line tools"></a>1.1 Xcode command line tools</h3><p>Xcode command line tools is a set of useful tools from Apple. After you install this, you can develop C&#x2F;C++ program and use git.</p>
+<p>You should run this command in your terminal:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">xcode-select --install</span></span><br></pre></td></tr></table></figure>
+
+<p>Or you can get Xcode in App Store, you just need to click ‘Get’. However, it takes a long time because Xcode IDE is a nearly 20GB app.</p>
+<h3 id="1-2-Homebrew🍺"><a href="#1-2-Homebrew🍺" class="headerlink" title="1.2 Homebrew🍺"></a>1.2 Homebrew🍺</h3><p>Homebrew is the most popular package manager in macOS. You can install many useful tools with homebrew. You can just run the command to install it:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>For more information, you can visit their official website: <a target="_blank" rel="noopener" href="https://brew.sh/">https://brew.sh</a></p>
+<p>There are several commands during the install process, just follow it.</p>
+<h3 id="1-3-Node-js"><a href="#1-3-Node-js" class="headerlink" title="1.3 Node.js"></a>1.3 Node.js</h3><p>Node.js is a powerful JS engine running locally. Many useful tools is written in node.js. <code>npm</code> is one of the most popular package manager.</p>
+<p>You can go to their official website(<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a>) to install the <code>.pkg</code>, or use homebrew just like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">brew install node</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-Python3"><a href="#1-4-Python3" class="headerlink" title="1.4 Python3"></a>1.4 Python3</h3><p>You can find that there is a build-in python in your new MacBook. But it’s python2. There are many differences between python3 and python2. So you should install python3.</p>
+<p>Familiar with Node.js, you can also install it from their official website or homebrew.</p>
+<h2 id="2-Oh-My-ZSH"><a href="#2-Oh-My-ZSH" class="headerlink" title="2. Oh My ZSH"></a>2. Oh My ZSH</h2><p>Oh My Zsh is an open source, community-driven framework for managing your zsh configuration. If you want to change your terminal’s theme, you must install it.</p>
+<p>You can install it very easily, just run this command in your terminal:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>‼️WARNING‼️: If you have written something in <code>~/.zshrc</code>, please make a backup copy because oh my zsh will cover your configuration file.</p>
+</blockquote>
+<h2 id="3-iTerm2"><a href="#3-iTerm2" class="headerlink" title="3. iTerm2"></a>3. iTerm2</h2><p>iTerm2 is a popular terminal in macOS. It has many improvements. Many programmers use it as their default terminal.</p>
+<p>So you should install iTerm2. I suggest you to use <code>.dmg</code> to install.</p>
+<h2 id="4-Download-Fonts-And-Themes"><a href="#4-Download-Fonts-And-Themes" class="headerlink" title="4. Download Fonts And Themes"></a>4. Download Fonts And Themes</h2><p>The terminal’s default font is not good-looking for us programmers for the reason that it is not a monospace font. Therefore, we should download a monospace font. Also, we should download a beautiful theme, I think that power level 10k is a good choice for you.</p>
+<p>You can git clone the theme to your custom theme folder.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/romkatv/powerlevel10k.git <span class="variable">$ZSH_CUSTOM</span>/themes/powerlevel10k</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$ZSH_CUSTOM</code>  reffers to <code>~/.oh-my-zsh/custom</code>.</p>
+<p>Because we should use a font that suitable for the theme, we should download these font to wherever you want. Go to this website <a target="_blank" rel="noopener" href="https://github.com/Falkor/dotfiles/blob/master/fonts/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf">https://github.com/Falkor/dotfiles/blob/master/fonts/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf</a> for download. You will get a <code>.ttf</code> file and you should open the font book app and drag the <code>.ttf</code> to the panel to add this font.</p>
+<h2 id="5-Set-iTerm2"><a href="#5-Set-iTerm2" class="headerlink" title="5. Set iTerm2"></a>5. Set iTerm2</h2><p>At this stage, you should set your iterm2 more beautiful by creating your own profile. Go to <code>Preference -&gt;Profiles</code>, create your own profile (please give it a readble name and <strong>do not delete default profile!</strong>).</p>
+<p>Then set your own profile as default and begin to set it more preferences.</p>
+<p>Firstly, go to this website <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/utsavized/iterm2/develop/utsavized.itermcolors">https://raw.githubusercontent.com/utsavized/iterm2/develop/utsavized.itermcolors</a>, you will see many html like strings. Copy it and paste it to a newly-created <code>filename.itermcolors</code>. Then go to color settings to set your <code>.itermcolors</code> as your colorset.</p>
+<p>Then go to the text settings and set the font as your <code>SourcecodePro+...</code> font, and you can set your font size as options.</p>
+<p>Finally go to the sessions settings and enable your status bar. You can see <code>Configution Status Bar</code> at the enable button’s right, click it and add some widgets you want. As my opinion, it’s necessary to add CPU, GPU and Network widgets because you want to know the current status of this computer when you want to excute some command.</p>
+<h2 id="6-Config-p10k-themes"><a href="#6-Config-p10k-themes" class="headerlink" title="6. Config p10k themes"></a>6. Config p10k themes</h2><p>The last main task you should complete is to let the p10k theme your default theme and config it when you first use it.</p>
+<p>Just set theme on .zshrc: <code>ZSH_THEME=&quot;powerlevel10k/powerlevel10k&quot;</code>, save your update and restart your iTerm2. You will enter the config process of p10k. Config it as you like, you will see many tips and previews.</p>
+<p>Then your iTerm2 terminal is much more beautiful than before 🎉🎉🎉</p>
+<h2 id="7-After"><a href="#7-After" class="headerlink" title="7. After"></a>7. After</h2><p>The step 6 is not an end, when you use terminal with other software such as VS Code or IDEA, you will see that the apple logo ‘’’’ and other symbols become unknown. Don’t worry! Just go to their Preferences and change the terminal font to your own <code>SourcecodePro...</code> and restart your Editors or IDEs. You will see that it just works(maybe not as beautiful as iTerm2😮‍💨).</p>
+<h2 id="8-Add-Auto-Suggestion-Plugin"><a href="#8-Add-Auto-Suggestion-Plugin" class="headerlink" title="8. Add Auto-Suggestion Plugin"></a>8. Add Auto-Suggestion Plugin</h2><p>The main advantage of oh-my-zsh is that there are many plugins available to improve your efficiency. I can’t wait to recommend  <code>zsh-autosuggestion</code> plugin to you.</p>
+<p>First you should install it to <code>$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-autosuggestions</code>. Run this command in your beautiful terminal.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span></span><br></pre></td></tr></table></figure>
+
+<p>Then go to <code>.zshrc</code> file and find line around 79. You will see plugins setting(git plugin has been existed by default). Add <code>zsh-autosuggestions</code> and restart your terminal.</p>
+<p>When you type command that you typed before, you will see the tips. You can just press right arrow ➡️ to complete this command quickly. Trust me, it’s very helpful because it can save you much time.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2021/11/28/TypescriptCrashCource/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Typescript Crash Cource</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2021/10/13/Export%20your%20iPad%20App%20and%20Run%20It%20on%20MacOS/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Export your iPad App and Run It on MacOS</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

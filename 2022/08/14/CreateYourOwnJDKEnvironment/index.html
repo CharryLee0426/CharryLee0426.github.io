@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>How to Create Your Own JDK Environment - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="How to Create Your Own JDK Environment - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2022/08/14/CreateYourOwnJDKEnvironment/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2022-08-14T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Java/">Java</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>August</span>
+            <span>14,</span>
+            <span>2022</span>
+        </div>
+        
+
+        <h2 class="title">How to Create Your Own JDK Environment</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="How-to-Create-Your-Own-JDK-Environment"><a href="#How-to-Create-Your-Own-JDK-Environment" class="headerlink" title="How to Create Your Own JDK Environment"></a>How to Create Your Own JDK Environment</h1><h2 id="0-Overview"><a href="#0-Overview" class="headerlink" title="0. Overview"></a>0. Overview</h2><p>JVM, short for Java Virtual Machine, may be the most important infrasturcture of all time. Not only java, but also many other programming language such as kotlin use JDK as their compile tool. Therefore, all developers who wanna improve their skills to the next level should read JDK, understand JDK, then try to debug it or alternate it! That is the purpose of this article, making a good start point for developers to build their own JDK environment.</p>
+<h2 id="1-What-it-is-isn’t"><a href="#1-What-it-is-isn’t" class="headerlink" title="1. What it is &amp; isn’t"></a>1. What it is &amp; isn’t</h2><p>What it is</p>
+<ul>
+<li>A guide to build JDK from source code;</li>
+<li>A solution to problems potentially happend when compiling the source code of openjdk.</li>
+</ul>
+<p>What it isn’t</p>
+<ul>
+<li>A guide to install JDK to your computer;</li>
+<li>A guide similar to official illustration <code>building.md</code> in openjdk github repo.</li>
+</ul>
+<h2 id="2-Who-does-this-guide-for"><a href="#2-Who-does-this-guide-for" class="headerlink" title="2. Who does this guide for"></a>2. Who does this guide for</h2><p>I wrote this article not for myself, although only me focus on this repo. I hope it will be helpful for:</p>
+<ul>
+<li>Java developers who wanna improve themselves;</li>
+<li>Researchers who are interested in compiler design;</li>
+<li>Students who don’t have the experience to get a programming language from source code</li>
+</ul>
+<h2 id="3-My-Computer-Introduction"><a href="#3-My-Computer-Introduction" class="headerlink" title="3. My Computer Introduction"></a>3. My Computer Introduction</h2><p>This guide is all re-implemented many times on my computer. And I can make sure it is executable.</p>
+<p>About My Computer:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>Apple MacBook Pro</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>M1</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>Operating system</td>
+<td>macOS 13.2.1 (Ventura)</td>
+</tr>
+<tr>
+<td>Xcode Command Line Tools</td>
+<td>2396</td>
+</tr>
+<tr>
+<td>Clang Compiler Version</td>
+<td>Apple clang version 14.0.0</td>
+</tr>
+<tr>
+<td>Boot JDK Version</td>
+<td>openjdk version “17.0.5” 2022-10-18 LTS<br/>OpenJDK Runtime Environment Zulu17.38+21-CA (build 17.0.5+8-LTS)<br/>OpenJDK 64-Bit Server VM Zulu17.38+21-CA (build 17.0.5+8-LTS, mixed mode, sharing)</td>
+</tr>
+</tbody></table>
+<p>So it is very suitable for developers who use new apple silicon macs. We should meet many problems if we use a uncommon architecture for PC.</p>
+<h2 id="4-Pre-requiries"><a href="#4-Pre-requiries" class="headerlink" title="4. Pre-requiries"></a>4. Pre-requiries</h2><ol>
+<li><p>boot jdk, it’s best to download the last previous version before jdk which you want to compile.</p>
+<p> for example, you should download jdk 16 as your boot jdk if you want to research jdk 17;</p>
+</li>
+<li><p>Xcode, you should install it for getting all tools although you may be not interested in Apple mobile develop at all;</p>
+</li>
+<li><p>At least 5GB is required;</p>
+</li>
+</ol>
+<h2 id="5-Where-can-I-get-openjdk-source-code"><a href="#5-Where-can-I-get-openjdk-source-code" class="headerlink" title="5. Where can I get openjdk source code?"></a>5. Where can I get openjdk source code?</h2><p>The first difficulty is located at the very beginning. You will find that it is not easy to get source code. Although an official repo is published on GitHub by openjdk group and there are many distributions developed by different companies, you’ll find that most of them only provide binary installers. You can find source code in official website but they, openjdk group, doesn’t consider compatiability at all. Things get worse when you use Mac on Apple silicon, next generation arm PC SoC. </p>
+<p>Thankfully, I got one which is compatiable with Apple Silicon and shares source code to every developers. It is <code>JetbrainsRuntime</code>, a foundation openjdk used by every ides and tools of jetbrains such as Intellij, Pycharm and Clion. You can clone it from its Github repo <a target="_blank" rel="noopener" href="https://github.com/JetBrains/JetBrainsRuntime">HERE</a>. It has supported Apple Silicon natively since Apple released its new self-developed SoC. At the meanwhile, it adds a lot of features for rendering text, images, and other contents in oder to improve users’ experience. Thus, it will be a better choice if you’re interested in those extra features.</p>
+<h2 id="6-Following-build-md-and…-get-your-first-error"><a href="#6-Following-build-md-and…-get-your-first-error" class="headerlink" title="6. Following build.md, and…, get your first error!"></a>6. Following <code>build.md</code>, and…, get your first error!</h2><p>You enter into the repo folder after you clone it from github, read <code>build.md</code> provided by Jetbrains, execute your first command <code>sh ./configure</code>, and then… get lots of error logs!</p>
+<p>Don’t be upset when you meet error at the beginning. Almost all developers can’t build their own jdk at first time without any error. The most common reason for this error may be:</p>
+<ul>
+<li><p>Some essiential tools aren’t installed:</p>
+<ul>
+<li><p><code>autoconf</code>: <code>brew install autoconf</code>;</p>
+</li>
+<li><p><code>command line tool</code>: install xcode in <a href="developer.apple.com">developer.apple.com</a>;</p>
+</li>
+<li><p><code>bootstrap jdk</code>: install at least <code>n-1</code> version jdk from mainstream developers such as azul;</p>
+</li>
+</ul>
+</li>
+<li><p>Your computer chooses default command line tool rather than Xcode’s command line tools</p>
+<ul>
+<li><p>First, use <code>xcode-select -p</code> to check which command line tool you selected, the default one is at <code>/Library/Developer/CommandLineTools</code>;</p>
+</li>
+<li><p>Second, change your command line tool by using <code>sudo xcode-select -s /Applications/Xcode.app/Contents/Developer</code>. password is required;</p>
+</li>
+<li><p>Third, check your command line tool again.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Execute <code>sh ./configure</code> again, and enjoy the joy you configed your openjdk building environment.</p>
+<h2 id="7-Make-your-own-iamges-and-lots-of-errors"><a href="#7-Make-your-own-iamges-and-lots-of-errors" class="headerlink" title="7. Make your own iamges, and,,, lots of errors!"></a>7. Make your own iamges, and,,, lots of errors!</h2><p>Following the official <code>building.md</code>, you execute <code>make images</code> in order to get your first jdk binary. And you get more errors! Unfortunately, building jdk is much bigger and more difficult task than building golang or other programming languages.</p>
+<p>You maybe see lots of familiar errors which say that a function called <code>sprintf</code> will be deprecated in the future. And your building process terminates because of them. However, they are, in fact, warnings but not errors.</p>
+<p>You can solve it very easily, but must reexecute the first step: make your configure. Add <code>--disable-warnings-as-errors</code> to <code>sh ./configure</code> then your configure won’t see warnings as errors. Although it is not recommended in practice, it is the only way you can get your own openjdk on your M1 Macs.</p>
+<p>As matter of fact, it is good to apply a strict mode in building such a big and complicated virtual machine due to robust. It can make your project more stable, less errors.</p>
+<h2 id="8-Get-your-own-openjdk"><a href="#8-Get-your-own-openjdk" class="headerlink" title="8. Get your own openjdk!"></a>8. Get your own openjdk!</h2><p>Finally, you build it and get your own openjdk! Your jdk path is <code>&lt;JetbrainsRuntimePath&gt;/build/macosx-aarch64-server-release/images/jdk</code>.</p>
+<h2 id="9-At-last…"><a href="#9-At-last…" class="headerlink" title="9. At last…"></a>9. At last…</h2><p>Last but not least, I have to say only building your own jdk but not editting it is meaningless. You have to make your editting in order to understand how jdk and java work and improve your skills.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/guidence/" class="tag">#guidence</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2022/09/07/Debugging%20C:C++%20in%20VS%20Code%20macOS/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Debugging C/C++ in VS Code macOS</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2022/07/16/ADD%20and%20MUL%20Comparison/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Some Data about Speed of Multiplication and Addition</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

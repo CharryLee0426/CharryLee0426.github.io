@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Shell Introduction - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Shell Introduction - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2022/03/22/ShellTutorial/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2022-03-22T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/shell-tutorial/">shell - tutorial</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>March</span>
+            <span>22,</span>
+            <span>2022</span>
+        </div>
+        
+
+        <h2 class="title">Shell Introduction</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Shell-Introduction"><a href="#Shell-Introduction" class="headerlink" title="Shell Introduction"></a>Shell Introduction</h1><h2 id="0-What’s-Shell"><a href="#0-What’s-Shell" class="headerlink" title="0. What’s Shell?"></a>0. What’s Shell?</h2><blockquote>
+<p>In computing, a shell is a computer program which exposes an operating system’s services to a human user or other programs. In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer’s role and particular operation. It is named a shell because it is the outermost layer around the operating system.</p>
+</blockquote>
+<p>The above is a concept given by Wikipedia. Ususally, we talk about shell as a command-line interface which is usually in your system default. The famous shells in your system (I assume that you have a Unix or Unix-like system) are bash, zsh and k-sh. All the shells follow a similar standard and shell script can be run correctly in all the shells. Shell can make your work more efficently because your can write script to do your routine thing. Therefore, it’s very helpful for you to learn the basic knowledge about shell script.</p>
+<h2 id="1-Shell-Script"><a href="#1-Shell-Script" class="headerlink" title="1. Shell Script"></a>1. Shell Script</h2><h3 id="1-1-Hello-World-Script"><a href="#1-1-Hello-World-Script" class="headerlink" title="1.1 Hello World Script"></a>1.1 <code>Hello World</code> Script</h3><p>There is the easiest script that you can understand the most basic of shell script.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /bin/bash or /bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;What&#x27;s your name?&quot;</span></span><br><span class="line"><span class="built_in">read</span> Person</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, <span class="variable">$Person</span>.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>You can save it as <code>test.sh</code>. However, in most modern systems, you cannot run this script directly because the script doesn’t have the execution permission.</p>
+<p>You can go to the folder where the shell script lives, and use <code>ls -l</code> to see the detail of file. You can see the following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 lichen  staff    83  3 12 00:20 test.sh</span><br></pre></td></tr></table></figure>
+
+<p>For most users, you just need to give the permission, run this command to make it execute.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd 744 test.sh <span class="comment"># test.sh can be replaced by your filename</span></span><br></pre></td></tr></table></figure>
+
+<p>Then you can use <code>./test.sh</code> ro run this script.</p>
+<p>In this script, you see two simple commands: <code>echo</code> and <code>read</code>. <code>echo</code> can output something to the STDOUT (by default). <code>read</code> can accept your input in the terminal to the variable <code>Person</code>. When you want to use the variable <code>Person</code>, you must add <code>$</code> ahead.</p>
+<h3 id="1-2-Variable"><a href="#1-2-Variable" class="headerlink" title="1.2 Variable"></a>1.2 Variable</h3><p>A variable is a character string to which we assign a value. The value assigned could be a number, text, filename, device, or any other type of data. It’s nothing more than a pointer to the actual data. The shell enables you to create, assign and delete variables.</p>
+<p>The name of a variable can contain only letters (a to z or A to Z), numbers ( 0 to 9) or the underscore character ( _). By convention, Unix shell variables will have their name in UPPERCASE.</p>
+<p>These are valid variable names:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_ALI</span><br><span class="line">TOKEN_A</span><br><span class="line">VAR_1</span><br><span class="line">VAR_2</span><br></pre></td></tr></table></figure>
+
+<p>These are invalid variable names:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2_VAR           <span class="comment"># numbers should not be the first</span></span><br><span class="line">-VARIABLE       <span class="comment"># can&#x27;t use dash symbol (-)</span></span><br><span class="line">VAR1-VAR2</span><br><span class="line">VAR_A!          <span class="comment"># can&#x27;t use exclamation mark (!)</span></span><br></pre></td></tr></table></figure>
+
+<p>You can define a variable using:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variableName=variableValue</span><br></pre></td></tr></table></figure>
+
+<p>Shell also support define a const, but don’t have a specific keyword like <code>const</code>. You can use <code>readonly</code> keyword to declare a variable that it cannot be changed after initialization. Look at this example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NAME=<span class="string">&quot;Charry&quot;</span></span><br><span class="line"><span class="built_in">readonly</span> NAME</span><br><span class="line">NAME=<span class="string">&quot;Lee&quot;</span>      <span class="comment"># this will cause an ERROR</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$NAME</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>When you execute this script, you will see that error info:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❯ ./test.sh</span><br><span class="line">./test.sh: line 3: NAME: readonly variable</span><br></pre></td></tr></table></figure>
+
+<p>Like python or javascript, you can delete variables to make them not available after deleting. <code>unset</code> command is used to delete a variable. However, <code>unset</code> command can not delete variable which are marked <code>readonly</code>. See the following example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NAME=<span class="string">&quot;Charry&quot;</span></span><br><span class="line">LASTNAME=<span class="string">&quot;Lee&quot;</span></span><br><span class="line"><span class="built_in">readonly</span> LASTNAME</span><br><span class="line"><span class="built_in">unset</span> NAME</span><br><span class="line"><span class="built_in">unset</span> LASTNAME      <span class="comment"># this will cause an ERROR</span></span><br></pre></td></tr></table></figure>
+
+<p>For users, there are 3 types of variables:</p>
+<ul>
+<li><strong>Local Variable</strong> A local variable is a variable that is present within the current instance of the shell. It is not available to programs that are started by the shell. They are set at the command prompt.</li>
+<li><strong>Environment Variable</strong> An environment variable is available to any child process of the shell. Some programs need environment variables in order to function correctly. Usually, a shell script defines only those environment variables that are needed by the programs that it runs.</li>
+<li><strong>Shell Variable</strong> A shell variable is a special variable that is set by the shell and is required by the shell in order to function correctly. Some of these variables are environment variables whereas others are local variables.</li>
+</ul>
+<h3 id="1-3-Special-Variable"><a href="#1-3-Special-Variable" class="headerlink" title="1.3 Special Variable"></a>1.3 Special Variable</h3><p>There are some special variables in Unix which are declared by default (these are the same in Linux).</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>$0</strong></td>
+<td>The filename of the current script.</td>
+</tr>
+<tr>
+<td><strong>$n</strong></td>
+<td>These variables correspond to the arguments with which a script was invoked. Here <strong>n</strong> is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).</td>
+</tr>
+<tr>
+<td><strong>$#</strong></td>
+<td>The number of arguments supplied to a script.</td>
+</tr>
+<tr>
+<td><strong>$*</strong></td>
+<td>All the arguments are <strong>double quoted</strong>. If a script receives two arguments, $* is equivalent to $1 $2.</td>
+</tr>
+<tr>
+<td><strong>$@</strong></td>
+<td>All the arguments are individually double quoted. If a script receives two arguments, $@ is equivalent to $1 $2.</td>
+</tr>
+<tr>
+<td><strong>$?</strong></td>
+<td>The exit status of the last command executed.</td>
+</tr>
+<tr>
+<td><strong>$$</strong></td>
+<td>The process number of the current shell. For shell scripts, this is the process ID under which they are executing.</td>
+</tr>
+<tr>
+<td><strong>$!</strong></td>
+<td>The process number of the last background command.</td>
+</tr>
+</tbody></table>
+<p>You must found that $* and $@ is very similar. However, there is a slight difference between them. See this example.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># filename: cmd.sh</span></span><br><span class="line"><span class="comment"># /bin/bash or /bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Printing \$* &quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $*</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> i is: <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Printing \$@ &quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> i is: <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>Execute this script by add these following arguments:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./cmd a b <span class="string">&quot;c d&quot;</span> e</span></span><br><span class="line">Printing $*</span><br><span class="line">i is: a</span><br><span class="line">i is: b</span><br><span class="line">i is: c</span><br><span class="line">i is: d</span><br><span class="line">i is: e</span><br><span class="line">Printing $@</span><br><span class="line">i is: a</span><br><span class="line">i is: b</span><br><span class="line">i is: c d</span><br><span class="line">i is: e</span><br></pre></td></tr></table></figure>
+
+<p>When you pass the command line argument in double quotes (“c d”), the $* does not consider them as a single entity, and splits them. However, the $@ considers them as a single entity and hence the 3rd echo statement shows “c d” together. This is the difference between $* and $@.</p>
+<p>These special variables are very helpful for users and you should learn how to use them wisely.</p>
+<h3 id="1-4-Using-Array"><a href="#1-4-Using-Array" class="headerlink" title="1.4 Using Array"></a>1.4 Using Array</h3><p>A shell variable is capable enough to hold a single value. These variables are called scalar variables.</p>
+<p>Shell supports a different type of variable called an <strong>array</strong> variable. This can hold multiple values at the same time. Arrays provide a method of grouping a set of variables. Instead of creating a new name for each variable that is required, you can use a single array variable that stores all the other variables.</p>
+<p>There is one point that you must pay attention to. It’s different to declare an array in ksh or bash (zsh).</p>
+<p>If you declare an array in ksh, you should use this syntax:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set -A array_name value1 value2 ... valuen</span><br></pre></td></tr></table></figure>
+
+<p>If you declare an array in bash (zsh), you should use this syntax:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array_name=(value1 ... valuen)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>WARNING: the shell does not ignore the space ‘ ‘. So don’t use space between variable name and variable value. <code>ARRAY = (value_1 value_2 ... value_n)</code> will cause an error because the shell can’t handle the space symbol.</p>
+</blockquote>
+<p>After you have set any array variable, you access it as following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;ARRAYNAME[index]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>You can access all the elements in the array by using the following two methods:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;ARRAYNAME[@]&#125;</span></span><br><span class="line"><span class="variable">$&#123;ARRAYNAME[*]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-Basic-Operators"><a href="#1-5-Basic-Operators" class="headerlink" title="1.5 Basic Operators"></a>1.5 Basic Operators</h3><p>There are various operators supported by each shell. The following will discuss in detail about bash (default shell).</p>
+<p>Like other programming languages, shell has several kinds of operators:</p>
+<ul>
+<li>Arithmetic Operators;</li>
+<li>Relational Operators;</li>
+<li>Boolean Operators;</li>
+<li>String Operators;</li>
+<li>File Test Operators.</li>
+</ul>
+<h4 id="1-5-1-Arithmetic-Operators"><a href="#1-5-1-Arithmetic-Operators" class="headerlink" title="1.5.1 Arithmetic Operators"></a>1.5.1 Arithmetic Operators</h4><p>Look at this example and shell has the ability to calculate the expressions you give.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /bin/bash or /bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line">val=`<span class="built_in">expr</span> 2 + 2`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Total value : <span class="variable">$val</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The following points must to be considered:</p>
+<ul>
+<li>There must be spaces between operators and expressions. For example, 2+2 is not correct; it should be written as 2 + 2;</li>
+<li>The complete expression should be enclosed between ‘ ‘, called the backtick.</li>
+</ul>
+<p>There are some useful arithmetic operators: <code>+, -, *, /, %, =, ==, !=</code>.</p>
+<p>All the arithmetical calculations are done using long integers.</p>
+<h4 id="1-5-2-Retional-Operators"><a href="#1-5-2-Retional-Operators" class="headerlink" title="1.5.2 Retional Operators"></a>1.5.2 Retional Operators</h4><p>Bash or zsh supports the following relational operators that are specific to numeric values. These operators do not work for string values unless their value is numeric.</p>
+<p>For example, following operators will work to check a relation between 10 and 20 as well as in between “10” and “20” but not in between “ten” and “twenty”.</p>
+<p><code>-eq, -ne, -gt, -lt, -ge, -le</code> are abbreviation of some relation words such as <strong>greater, equal, less</strong>.</p>
+<h4 id="1-5-3-Boolean-Operators"><a href="#1-5-3-Boolean-Operators" class="headerlink" title="1.5.3 Boolean Operators"></a>1.5.3 Boolean Operators</h4><p>It also provides some boolean operators for boolean operation such as <code>!</code> (reverse), <code>-a</code> (and), <code>-o</code> (or). For example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that a = 10 and b = 20.</span></span><br><span class="line"></span><br><span class="line">[ <span class="variable">$a</span> -lt 20 -o <span class="variable">$b</span> -gt 100]      <span class="comment"># true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-4-String-Operators"><a href="#1-5-4-String-Operators" class="headerlink" title="1.5.4 String Operators"></a>1.5.4 String Operators</h4><p>There are several string operators being used to compare two Strings. Here are all of them.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>Checks if the value of two operands are equal or not; if yes, then the condition becomes true.</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td>Checks if the value of two operands are equal or not; if values are not equal then the condition becomes true.</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>Checks if the given string operand size is zero; if it is zero length, then it returns true.</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>Checks if the given string operand size is non-zero; if it is nonzero length, then it returns true.</td>
+</tr>
+<tr>
+<td>str</td>
+<td>Checks if <strong>str</strong> is not the empty string; if it is empty, then it returns false.</td>
+</tr>
+</tbody></table>
+<p>There are two concepts that you should pay attention to: <code>length=0</code> and <code>null</code>. For shell script or other programming languages, <code>null</code> means that the system can not find the string (maybe the string variable doesn’t be initialized). <code>length=0</code> means that the variable has been initialized but the length is 0.</p>
+<h4 id="1-5-5-File-Test-Operators"><a href="#1-5-5-File-Test-Operators" class="headerlink" title="1.5.5 File Test Operators"></a>1.5.5 File Test Operators</h4><p>File test operators are used to test unix files.</p>
+<table>
+<thead>
+<tr>
+<th>Operators</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-b</td>
+<td>is block special file?</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>is character special file?</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>is directory?</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>is an ordinary file as opposed to a directory or a special file?</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>has set group ID (SGID) bit set?</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>has its sticky bit set?</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>is a named pipe?</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>is file descriptor open and associated with a terminal?</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>has set Set User ID (SUID) bit set?</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>is readable?</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>is writable?</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>is executable?</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>is size greater than 0?</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>is file exists?</td>
+</tr>
+</tbody></table>
+<p>There is a simple demo that shows you how to use these file test operators. The script will check itself if readable, writable and executable.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/bash</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line">filePath = <span class="string">&quot;./test.sh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -r  <span class="variable">$filePath</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> is readable&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -w <span class="variable">$filePath</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> is writable&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -x <span class="variable">$filePath</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> is executable&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-Decision-Making-Branch-Control"><a href="#1-6-Decision-Making-Branch-Control" class="headerlink" title="1.6 Decision-Making (Branch Control)"></a>1.6 Decision-Making (Branch Control)</h3><p>Almost all the shells support decision-making (as known as “if, else, switch, …”) in Unix. When you meet some cases that might be, you will make use of conditional statements that allow your program to make correct decisions and perform the right actions.</p>
+<p>There are two decision-making statements here:</p>
+<ul>
+<li><code>if...else...</code></li>
+<li><code>case...esac</code></li>
+</ul>
+<h4 id="1-6-1-if-else"><a href="#1-6-1-if-else" class="headerlink" title="1.6.1 if...else..."></a>1.6.1 <code>if...else...</code></h4><p>This is the most complete <code>if...else...</code> statement.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ &lt;condition 1&gt; ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="comment"># workflow 1</span></span><br><span class="line"><span class="keyword">elif</span> [ &lt;condition 2&gt; ]</span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">        <span class="comment"># workflow 2</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        <span class="comment"># workflow 3</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>You can add more <code>elif...</code> block to make your script do more things.</p>
+<h4 id="1-6-2-case-esac"><a href="#1-6-2-case-esac" class="headerlink" title="1.6.2 case...esac"></a>1.6.2 <code>case...esac</code></h4><p>Of course you can use multiple <code>if...elif</code> statements to perform a multiway branch. However, this is not the best solution. Especially when all of your branches depend on the value of a single variable. In this situation, you should use <code>case...esac</code> to replace multiple <code>if...elif</code> in order to make your script efficiently.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"><span class="comment"># Assumed that word is a string variable.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> word <span class="keyword">in</span></span><br><span class="line">   pattern1)</span><br><span class="line">      <span class="comment"># Statement(s) to be executed if pattern1 matches</span></span><br><span class="line">      ;;</span><br><span class="line">   pattern2)</span><br><span class="line">      <span class="comment"># Statement(s) to be executed if pattern2 matches</span></span><br><span class="line">      ;;</span><br><span class="line">   pattern3)</span><br><span class="line">      <span class="comment"># Statement(s) to be executed if pattern3 matches</span></span><br><span class="line">      ;;</span><br><span class="line">   *)</span><br><span class="line">     <span class="comment"># Default condition to be executed</span></span><br><span class="line">     ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<p>It’s very similar to the <code>switch...case</code> statement of other programming languages like <code>C/C++</code>.</p>
+<h3 id="1-7-Loop"><a href="#1-7-Loop" class="headerlink" title="1.7 Loop"></a>1.7 Loop</h3><p>The shell script supports 4 types of loops.</p>
+<ul>
+<li>while</li>
+<li>for</li>
+<li>until</li>
+<li>select</li>
+</ul>
+<p>You will use different loops based on the situation. For example, the while loop executes the given commands until the given condition remains true; the until loop executes until a given condition becomes true.</p>
+<h4 id="1-7-1-while-loop"><a href="#1-7-1-while-loop" class="headerlink" title="1.7.1 while loop"></a>1.7.1 while loop</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> command1 ; <span class="comment"># this is loop1, the outer loop</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">   Statement(s) to be executed <span class="keyword">if</span> command1 is <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">while</span> command2 ; <span class="comment"># this is loop2, the inner loop</span></span><br><span class="line">   <span class="keyword">do</span></span><br><span class="line">      Statement(s) to be executed <span class="keyword">if</span> command2 is <span class="literal">true</span></span><br><span class="line">   <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">   Statement(s) to be executed <span class="keyword">if</span> command1 is <span class="literal">true</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-7-2-for-loop"><a href="#1-7-2-for-loop" class="headerlink" title="1.7.2 for loop"></a>1.7.2 for loop</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> word1 word2 ... wordN</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">   Statement(s) to be executed <span class="keyword">for</span> every word.</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><code>word1 word2 ... wordN</code> can be replaced by an array variable. It’s very similar with <code>for (int number : int[]) &#123;...&#125;</code> in Java.</p>
+<h4 id="1-7-3-until-loop"><a href="#1-7-3-until-loop" class="headerlink" title="1.7.3 until loop"></a>1.7.3 until loop</h4><p><code>until</code> loop is similar with <code>do...while</code> loop in C&#x2F;C++.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">until</span> &lt;condition&gt;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="comment"># workflow</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-7-4-select-loop"><a href="#1-7-4-select-loop" class="headerlink" title="1.7.4 select loop"></a>1.7.4 select loop</h4><p>The select loop provides an easy way to create a numbered menu from which users can select options. It is useful when you need to ask the user to choose one or more items from a list of choices.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> var <span class="keyword">in</span> word1 word2 ... wordN</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">   <span class="comment"># Statement(s) to be executed for every word.</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>See this script. It can help you build a reactive interface.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> DRINK <span class="keyword">in</span> tea cofee water juice appe all none</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">   <span class="keyword">case</span> <span class="variable">$DRINK</span> <span class="keyword">in</span></span><br><span class="line">      tea|cofee|water|all) </span><br><span class="line">         <span class="built_in">echo</span> <span class="string">&quot;Go to canteen&quot;</span></span><br><span class="line">         ;;</span><br><span class="line">      juice|appe)</span><br><span class="line">         <span class="built_in">echo</span> <span class="string">&quot;Available at home&quot;</span></span><br><span class="line">      ;;</span><br><span class="line">      none) </span><br><span class="line">         <span class="built_in">break</span> </span><br><span class="line">      ;;</span><br><span class="line">      *) <span class="built_in">echo</span> <span class="string">&quot;ERROR: Invalid selection&quot;</span> </span><br><span class="line">      ;;</span><br><span class="line">   <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>When you run this script, you will see several with <code>#?</code> ahead. You can input the sequence numbers the system gives and go to the sepecific branch. In macOS, you must input the number to select, maybe you should input the variable itself in another OS.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">./test.sh</span></span><br><span class="line">1) tea</span><br><span class="line">2) cofee</span><br><span class="line">3) water</span><br><span class="line">4) juice</span><br><span class="line">5) appe</span><br><span class="line">6) all</span><br><span class="line">7) none</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">? none</span></span><br><span class="line">ERROR: Invalid selection</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">? 1</span></span><br><span class="line">Go to canteen</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">? 5</span></span><br><span class="line">Available at home</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">? 7</span></span><br></pre></td></tr></table></figure>
+
+<p>‼️ NOTICE ‼️ Whatever loops you choose to use, please make sure that they are not infinite loops for the reason that any loop must has a limited life and comes out once the conditon is false or true depending on the loop.</p>
+<h3 id="1-8-Substitution"><a href="#1-8-Substitution" class="headerlink" title="1.8 Substitution"></a>1.8 Substitution</h3><p>The shell performs substitution when it encounters an expression that contains one or more special characters. For examples, <code>\n</code> means ‘newline’.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 10</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;Value of a is <span class="variable">$a</span> \n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>-e</code> option enables the interpretation of backslash escapes. Without this option, <code>\n</code> will only be string <code>\n</code>.</p>
+<p>The following escape sequences which can be used in echo command.</p>
+<table>
+<thead>
+<tr>
+<th>Escape</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\\</td>
+<td>backslash</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>alert (BEL)</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>backspace</td>
+</tr>
+<tr>
+<td>\c</td>
+<td>suppress trailing newline</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>form feed</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>new line</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>carriage return</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>horizontal tab</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>vertical lab</td>
+</tr>
+</tbody></table>
+<p>Command substitution is the mechanism by which the shell performs a given set of commands and then substitutes their output in the place of the commands.</p>
+<p>The syntax of command substitution is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="built_in">command</span>`</span><br></pre></td></tr></table></figure>
+
+<p>For example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DATE=`<span class="built_in">date</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Date is <span class="variable">$DATE</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>When you run this script, the system will replace <code>$DATE</code> by the result of command <code>date</code>.</p>
+<p>Variable substitution iis the mechanism by which the shell can replaced some variables.</p>
+<table>
+<thead>
+<tr>
+<th>variable substitution</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>${var}</td>
+<td>substitute the value of var</td>
+</tr>
+<tr>
+<td>${var:-word}</td>
+<td>If var is null or unset, word is substituted for var. The value of var doesn’t change.</td>
+</tr>
+<tr>
+<td>${var:&#x3D;word}</td>
+<td>If var is null or unset, var is set to the value of <strong>word</strong>.</td>
+</tr>
+<tr>
+<td>${var:?message}</td>
+<td>If var is null or unset, message is printed to standard error. This checks that variables are set correctly.</td>
+</tr>
+<tr>
+<td>${var:+word}</td>
+<td>If var is set, word is substituted for var. The value of var doesn’t change.</td>
+</tr>
+</tbody></table>
+<h3 id="1-9-IO-Redirection"><a href="#1-9-IO-Redirection" class="headerlink" title="1.9 IO Redirection"></a>1.9 IO Redirection</h3><p>Most Unix system commands take input from your terminal and send the resulting output back to your terminal. A command normally reads its input from the standard input, which happens to be your terminal by default. Similarly, a command normally writes its output to standard output, which is again your terminal by default.</p>
+<h4 id="1-9-1-Input-redirection"><a href="#1-9-1-Input-redirection" class="headerlink" title="1.9.1 Input redirection"></a>1.9.1 Input redirection</h4><p>The output from a command normally intended for standard output can be easily diverted to a file instead. This capability is known as output redirection. You can use a ‘&gt;’ to change the output destination from your system default terminal screen to another file or pipe.</p>
+<p>Look at the example below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line">FILE=<span class="string">&quot;directory.txt&quot;</span></span><br><span class="line">CURRENTFILE=<span class="variable">$0</span></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$FILE</span> ]</span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">    <span class="built_in">touch</span> <span class="variable">$FILE</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;this is a file that created by <span class="variable">$CURRENTFILE</span>&quot;</span> &gt; <span class="variable">$FILE</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;the file has existed.&quot;</span> &gt; <span class="variable">$FILE</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>When you excute the script, you won’t see any tips in this process. Because the two <code>echo</code> commands in this script declare that the result will not send to <code>stdout</code>.</p>
+<p>There is a point that you must pay attention to is that if a command has its output redirected to a file and the file already contains some data, that data will be <strong>lost</strong>. To protect the content of the file, you can use <code>&gt;&gt;</code> to replace <code>&gt;</code> in order to append new content but not replace the content of this file.</p>
+<h4 id="1-9-2-Output-Redirection"><a href="#1-9-2-Output-Redirection" class="headerlink" title="1.9.2 Output Redirection"></a>1.9.2 Output Redirection</h4><p>Just as the output of a command can be redirected to a file, so can the input of a command be redirected from a file. As the greater-than character <code>&gt;</code> is used for output redirection, the less-than character <code>&lt;</code> is used to redirect the input of a command.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assumed that users is a text file.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">wc</span> -l <span class="built_in">users</span>    <span class="comment"># 2 users</span></span><br><span class="line"><span class="built_in">wc</span> -l &lt; <span class="built_in">users</span>  <span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+
+<p>In the first case, it is reading its input from the file users. In the second case, it only knows that it is reading its input from standard input so it does not display file name.</p>
+<h4 id="1-9-3-Here-Document"><a href="#1-9-3-Here-Document" class="headerlink" title="1.9.3 Here Document"></a>1.9.3 Here Document</h4><p>Here Document is used to redirect input into an interactive shell script or program.</p>
+<p>You can run an interactive program within a shell script without user action by supplying the required input for the interactive program, or interactive shell script.</p>
+<p>The basic syntax of Here Document is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> &lt;&lt; <span class="string">endstring</span></span><br><span class="line"><span class="string"># The endstring</span> must be a single word that does not contain spaces or tabs.</span><br></pre></td></tr></table></figure>
+
+<p>When you run this, you will go into a <code>heredoc&gt;</code> tag. You can input something. When you type <code>endstring</code> into terminal and press <code>enter</code>, the system will handle your input. You can use the here document to print multiple lines using your script.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">This is a simple lookup program </span></span><br><span class="line"><span class="string">for good (and bad) restaurants</span></span><br><span class="line"><span class="string">in Cape Town.</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-9-4-Discard-Output"><a href="#1-9-4-Discard-Output" class="headerlink" title="1.9.4 Discard Output"></a>1.9.4 Discard Output</h4><p>Sometimes you will need to execute a command, but you don’t want the output displayed on the screen. In such cases, you can discard the output by redirecting it to the file <code>/dev/null</code>.</p>
+<p>To discard both output of a command and its error output, use standard redirection to redirect <code>STDERR</code> to <code>STDOUT</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>Here 2 represents <code>STDERR</code> and 1 represents <code>STDOUT</code>.</p>
+<h3 id="1-10-Shell-Function"><a href="#1-10-Shell-Function" class="headerlink" title="1.10 Shell Function"></a>1.10 Shell Function</h3><p>Using functions to perform repetitive tasks is an excellent way to create <strong>code reuse</strong>. This is an important part of modern object-oriented programming principles.</p>
+<p>Shell functions are similar to subroutines, procedures, and functions in other programming languages.</p>
+<p>The syntaxes of defining and invokeing a function which doesn’t have a parameter is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/bash</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define your function here</span></span><br><span class="line"><span class="function"><span class="title">Hello</span></span> () &#123;</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Invoke your function</span></span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
+<p>The result is that the terminal will show you a <code>hello world</code>.</p>
+<p>You can define a function that will accept parameters while calling the function. These parameters would be represented by $1, $2 and so on.</p>
+<p>Following is an example where it passes two parameters Zara and Ali and then it captures and prints these parameters in the function.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/bin/bash or /usr/bin/zsh</span></span><br><span class="line"><span class="comment"># Both are OK.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define your function here</span></span><br><span class="line"><span class="function"><span class="title">Hello</span></span> () &#123;</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;Hello World <span class="variable">$1</span> <span class="variable">$2</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Invoke your function</span></span><br><span class="line">Hello Zara Ali</span><br></pre></td></tr></table></figure>
+<p>You can also define a function that has more than 1 parameter. You can define a function that will accept parameters while calling the function. These parameters would be represented by $1, $2 and so on.</p>
+<p>Like other programming languages, you can define a function which invokes other funcions or itself. See this example below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Func1</span></span> () &#123;</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;this is function 1.&quot;</span></span><br><span class="line">   Func2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">Func2</span></span> () &#123;</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;this is function 2.&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Invoke function 1.</span></span><br><span class="line">Func1</span><br></pre></td></tr></table></figure>
+<p>The result of the example above is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this is function 1.</span><br><span class="line">this is function 2.</span><br></pre></td></tr></table></figure>
+<p>The behavior that call function itself called <strong>recursive</strong>. There also is a method that you can put definitions for commonly used functions inside your .profile. These definitions will be available whenever you log in and you can use them at the command prompt.</p>
+<p>To remove the definition of a function from the shell, use the unset command with the <code>-f </code> option. This command is also used to remove the definition of a variable to the shell.</p>
+<h2 id="2-In-the-End"><a href="#2-In-the-End" class="headerlink" title="2. In the End"></a>2. In the End</h2><p>You can use some shell scripts to make your routine jobs more efficient. However, the best way you improve your efficiency is to search the existed scripts which has been tested by many developers. It’s very silly to write some scripts yourself.</p>
+<p>On 2022&#x2F;03&#x2F;20, I wrote a script that can create python virtual environment more quickly.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2022/04/27/InstallGoFromSource/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Install Golang from Source Code</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2022/02/18/%E5%9C%A8%20Mac%20%E4%B8%8A%E4%BD%BF%E7%94%A8%20Docker%20%E5%92%8C%20k8s/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Use Docker and k8s on Mac</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

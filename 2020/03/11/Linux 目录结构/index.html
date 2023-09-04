@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Linux File System Structure - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Linux File System Structure - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2020/03/11/Linux%20%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2020-03-11T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/linux-tutorial/">linux - tutorial</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>March</span>
+            <span>11,</span>
+            <span>2020</span>
+        </div>
+        
+
+        <h2 class="title">Linux File System Structure</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="Linux-目录结构"><a href="#Linux-目录结构" class="headerlink" title="Linux 目录结构"></a>Linux 目录结构</h2><blockquote>
+<p> Linux 和 macOS 等系统和 Windows 最大的区别就是它们没有“盘符的概念”，即可以将整块硬盘视为一个整体，而且还有“一切皆文件”的思想，即一切内容，甚至是硬件都可以视作一个文件。这篇文章总结一下 Linux 系统的目录结构，把各个目录的作用都整理一下以备以后查看。</p>
+</blockquote>
+<h3 id="1-整体结构"><a href="#1-整体结构" class="headerlink" title="1. 整体结构"></a>1. 整体结构</h3><p>与 UNIX 系统类似，Linux 系统的目录结构是一棵标准的树。一个简略的架构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">a[&quot;/&quot;]</span><br><span class="line">b[&quot;boot&quot;]</span><br><span class="line">c[&quot;dev&quot;]</span><br><span class="line">d[&quot;usr&quot;]</span><br><span class="line">e[&quot;bin&quot;]</span><br><span class="line">f[&quot;sbin&quot;]</span><br><span class="line">g[&quot;home&quot;]</span><br><span class="line">h[&quot;lib&quot;]</span><br><span class="line">i[&quot;tmp&quot;]</span><br><span class="line">j[&quot;var&quot;]</span><br><span class="line">k[&quot;etc&quot;]</span><br><span class="line">l[&quot;proc&quot;]</span><br><span class="line">m[&quot;local&quot;]</span><br><span class="line">n[&quot;bin&quot;]</span><br><span class="line">r[&quot;bin&quot;]</span><br><span class="line">p[&quot;user1&quot;]</span><br><span class="line">q[&quot;user2&quot;]</span><br><span class="line"></span><br><span class="line">a---b</span><br><span class="line">a---c</span><br><span class="line">a---d</span><br><span class="line">a---e</span><br><span class="line">a---f</span><br><span class="line">a---g</span><br><span class="line">a---h</span><br><span class="line">a---i</span><br><span class="line">a---j</span><br><span class="line">a---k</span><br><span class="line">a---l</span><br><span class="line">d---m</span><br><span class="line">d---n</span><br><span class="line">m---r</span><br><span class="line">g---p</span><br><span class="line">g---q</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>/</code> 是文件系统的根目录，是整个文件系统的根。著名的犯罪命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">rm</span> -rf /*</span></span><br></pre></td></tr></table></figure>
+
+<p>就是从文件系统的根节点开始递归的全部删除文件，这样会使整台机器的所有内容都被删除，从而无法工作。</p>
+<h3 id="2-详细介绍"><a href="#2-详细介绍" class="headerlink" title="2. 详细介绍"></a>2. 详细介绍</h3><h4 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h4><p>Binaries（二进制文件），这里存放的是整个系统必须的二进制文件或可执行文件</p>
+<p><img src="https://pic.imgdb.cn/item/61af9e0c2ab3f51d91cdc94c.png"></p>
+<h4 id="sbin"><a href="#sbin" class="headerlink" title="sbin"></a>sbin</h4><p>System binaries（系统二进制文件），这里存放的是只能由 root 用户执行的系统二进制文件</p>
+<p><img src="https://pic.imgdb.cn/item/61af9f642ab3f51d91ce6664.png"></p>
+<h4 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h4><p>Libraries（库文件），这里存放许多二进制都会用到的公共库文件</p>
+<p><img src="https://pic.imgdb.cn/item/61af9ff82ab3f51d91cea517.png"></p>
+<h4 id="usr"><a href="#usr" class="headerlink" title="usr"></a>usr</h4><p>User binaries（用户二进制文件），用来存放非操作系统必须的二进制文件或应用程序，面向最终用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">a[usr]</span><br><span class="line">b[bin]</span><br><span class="line">c[local]</span><br><span class="line">d[bin]</span><br><span class="line">a---b</span><br><span class="line">a---c</span><br><span class="line">c---d</span><br></pre></td></tr></table></figure>
+
+<p>其中 bin 目录存放着面向最终用户的二进制文件。</p>
+<p>其中 local 目录存放着用户手动编译的二进制文件，这个目录的目的是为了创建一个安全区，防止它们与包管理器安装的软件发生冲突。</p>
+<h4 id="PATH"><a href="#PATH" class="headerlink" title="$PATH"></a>$PATH</h4><p>$PATH 是 Linux 环境的一个变量，包含由包管理器安装的二进制文件的位置。</p>
+<p>在 $PATH 声明环境变量，这样就可以在任何目录执行这些二进制文件。</p>
+<p>想要知道命令在文件系统的完整路径，可以用 which 命令去查找。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> <span class="built_in">ls</span></span><br><span class="line">/bin/ls</span><br></pre></td></tr></table></figure>
+
+<h4 id="etc"><a href="#etc" class="headerlink" title="etc"></a>etc</h4><p>ET Cetera or Editable Text Config（其他或可编辑文字配置），用来配置系统中软件的具体行为。</p>
+<p><img src="https://pic.imgdb.cn/item/61afaad92ab3f51d91d2f335.png"></p>
+<p>其中，一些以 <code>.conf</code> 结尾的文件就是文本形式的配置文件。</p>
+<h4 id="home"><a href="#home" class="headerlink" title="home"></a>home</h4><p>Linux 支持多用户，每个注册的用户都会在 home 里有一个对应的目录，目录下存有用户的文件、配置和软件。</p>
+<h4 id="boot"><a href="#boot" class="headerlink" title="boot"></a>boot</h4><p>靴子，这里指的系统启动所需要的文件，比如 Linux kernel 就在 boot 目录下。</p>
+<h4 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h4><p>Devices（设备），这里存放注册的各个设备。Linux 的设计理念就是“一切皆文件”，所以这里的设备在 Linux 看来也是一个文件。通过编辑文件，可以管理硬件设备和驱动。</p>
+<h4 id="opt"><a href="#opt" class="headerlink" title="opt"></a>opt</h4><p>Options（选项），这里存放可选的软件和软件包，基本不会对系统的正常工作产生影响。</p>
+<h4 id="var"><a href="#var" class="headerlink" title="var"></a>var</h4><p>Variables（变量）,这里存放操作系统中会发生变化的文件。比如系统日志和缓存文件。</p>
+<h4 id="tmp"><a href="#tmp" class="headerlink" title="tmp"></a>tmp</h4><p>Temps（暂时文件），这里存放临时文件，重启后就会被清除。</p>
+<h4 id="proc"><a href="#proc" class="headerlink" title="proc"></a>proc</h4><p>Process（进程），由系统创建在内存上用来监控运行中的进程。</p>
+<p><img src="https://pic.imgdb.cn/item/61afadfb2ab3f51d91d42cbc.png"></p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2020/05/13/git_basic_tutorial/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Git Basic Tutorial</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2019/11/09/Some%20Tips%20about%20Technical%20Writing/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Some Tips about Technical Writing</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

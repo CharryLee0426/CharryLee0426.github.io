@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Use Docker and k8s on Mac - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Use Docker and k8s on Mac - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2022/02/18/%E5%9C%A8%20Mac%20%E4%B8%8A%E4%BD%BF%E7%94%A8%20Docker%20%E5%92%8C%20k8s/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2022-02-18T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/docker-guidence/">docker - guidence</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>February</span>
+            <span>18,</span>
+            <span>2022</span>
+        </div>
+        
+
+        <h2 class="title">Use Docker and k8s on Mac</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="在-Mac-上使用-Docker-和-k8s"><a href="#在-Mac-上使用-Docker-和-k8s" class="headerlink" title="在 Mac 上使用 Docker 和 k8s"></a>在 Mac 上使用 Docker 和 k8s</h1><h2 id="0-介绍"><a href="#0-介绍" class="headerlink" title="0. 介绍"></a>0. 介绍</h2><p>Docker 和 k8s 是云时代下两种容器类应用，相比之下，Docker 相对更简单一些，k8s 在企业中使用的更多一些，这几天的实习工作中，我具体学习了这两种容器工具的使用。</p>
+<h2 id="1-Docker"><a href="#1-Docker" class="headerlink" title="1. Docker"></a>1. Docker</h2><p>按照 mentor 的 roadmap，我是应该先看 k8s 的，但是 k8s 比 Docker 复杂的多，即使是用官网上的 minikube 进行入门教程的复现都会出现错误。所以我就先学习了 Docker。</p>
+<p>Docker 简单来说就是虚拟机的进一步抽象化，相比起虚拟机，Docker 更加轻量，可以理解为一台虚拟机在结构上就是一台真正的电脑（只是硬件的部分被虚拟化了）而 Docker 只是一个为了运行某个程序的一个承载环境，更容易移植。</p>
+<p>Docker 的主要命令有</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker build -t &lt;tagname&gt; .</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&lt;tagname&gt; is your iamge name, . means that you will search Dockerfile <span class="keyword">in</span> the current directory <span class="keyword">for</span> building.</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令是从源码按照 <code>Dockerfile</code> 的指示构建 Docker Image。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -dp &lt;host_port&gt;:&lt;container_port&gt; &lt;image_name&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d stands <span class="keyword">for</span> depatched(running background), -p means that create a port mapping.</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令是从已经在 Docker daemon 中已经存在的 Image 创建一个 container。</p>
+<p>Image 和 Container 的关系类似于类与实例的关系。一个 image 可以创建多个 container。不过多个 container 的文件系统不共享，即容器 A 作出的修改在容器 B 中并不生效。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker ps</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令可以将现在正在运行的 container 列出。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker <span class="built_in">exec</span> &lt;container_id&gt; &lt;<span class="built_in">command</span>&gt;</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">command</span> will run <span class="keyword">in</span> your container.</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令适合在一些容器中执行一些命令。</p>
+<p>为了让容器之间可以通信，我们可以用持久层技术实现。像 sqlite 这样的轻量级数据库，就建立一个 volume 的 .db 文件就好了。像 MySQL 这样的大型数据库，就需要开一个 network。</p>
+<p>详细的可以看 Docker 的官网，有一个入门教程，很详细了。</p>
+<h2 id="2-k8s"><a href="#2-k8s" class="headerlink" title="2. k8s"></a>2. k8s</h2><p>K8s 光是配置环境就很麻烦了，minikube 还会有各种各样的错误。所以我使用了我们公司的集群做实验。使用 k8s port-forward 可以做端口转发，使得在本机上也能访问到公司的集群。</p>
+<p>k8s 的重要概念有 pods，deployment，service等等。还要理解命令式 API 和指导式 API 的不同之处，以及 k8s 内部有一个机制让所有集群按照要求尽可能的处于想要的状态。</p>
+<p>具体的可以参考文档。</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2022/03/22/ShellTutorial/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Shell Introduction</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2021/12/13/iOS%20%E7%9A%84%E6%8E%A8%E9%80%81%E6%9C%BA%E5%88%B6/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Dive into iOS Notification</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
