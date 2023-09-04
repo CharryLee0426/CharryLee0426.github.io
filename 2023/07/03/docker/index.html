@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Docker Summary for Basic Usage - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Docker Summary for Basic Usage - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2023/07/03/docker/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2023-07-03T07:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Docker/">Docker</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>3,</span>
+            <span>2023</span>
+        </div>
+        
+
+        <h2 class="title">Docker Summary for Basic Usage</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Docker-Summary-for-Basic-Usage"><a href="#Docker-Summary-for-Basic-Usage" class="headerlink" title="Docker Summary for Basic Usage"></a>Docker Summary for Basic Usage</h1><h2 id="1-What-is-Docker"><a href="#1-What-is-Docker" class="headerlink" title="1. What is Docker?"></a>1. What is Docker?</h2><p>Docker is not only a name of a company, but also a name of a technology. Docker is a containerization platform. It is used to build, ship, and run applications by using containers. Containers are isolated environments that contain everything an application needs to run. Therefore, Docker is a tool that can help us to build, ship, and run applications in containers.</p>
+<p>Why do we need containers?</p>
+<p>TL;DR Containers are lightweight, portable, and isolated. They help us to deploy and run applications in a more efficient way.<br>For example, if we want to run a web application on different servers, we need to install the same environment on each server.<br>It’s hard to solve environment problem if we just share the code of the application. However, if we use containers, we can just share the container image of the application. Then we can run the application on different servers without worrying about the environment problem.</p>
+<h2 id="2-How-to-install-Docker"><a href="#2-How-to-install-Docker" class="headerlink" title="2. How to install Docker?"></a>2. How to install Docker?</h2><p>Docker can run on all major operating systems, althought it is based on Linux kernel. For macOS and Windows users, we can install Docker Desktop. For Linux users, we can install Docker Engine.</p>
+<p>After installing Docker, we can use <code>docker version</code> to check whether Docker is installed successfully. If it is installed successfully, we can see the version of Docker Client and Docker Server.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line"></span><br><span class="line">Client:</span><br><span class="line"> Cloud integration: v1.0.35-desktop+001</span><br><span class="line"> Version:           24.0.5</span><br><span class="line"> API version:       1.43</span><br><span class="line"> Go version:        go1.20.6</span><br><span class="line"> Git commit:        ced0996</span><br><span class="line"> Built:             Fri Jul 21 20:32:30 2023</span><br><span class="line"> OS/Arch:           darwin/arm64</span><br><span class="line"> Context:           desktop-linux</span><br><span class="line"></span><br><span class="line">Server: Docker Desktop 4.22.1 (118664)</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          24.0.5</span><br><span class="line">  API version:      1.43 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.6</span><br><span class="line">  Git commit:       a61e2b4</span><br><span class="line">  Built:            Fri Jul 21 20:35:38 2023</span><br><span class="line">  OS/Arch:          linux/arm64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.6.21</span><br><span class="line">  GitCommit:        3dce8eb055cbb6872793272b4f20ed16117344f8</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.7</span><br><span class="line">  GitCommit:        v1.1.7-0-g860f061</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:        de40ad0</span><br></pre></td></tr></table></figure>
+
+<p>In fact, docker for macOS or for Windows runs on a Linux virtual machine. We can see the docker server’s OS&#x2F;Arch is always <code>linux/arm64</code> or <code>linux/amd64</code>.</p>
+<h2 id="3-Docker-Basic-Commands"><a href="#3-Docker-Basic-Commands" class="headerlink" title="3. Docker Basic Commands"></a>3. Docker Basic Commands</h2><p>To run a container from docker hub, a public docker image registry. We can use this command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 27017:27017 \ </span><br><span class="line">-e MONGO_INITDB_ROOT_USERNAME=admin \</span><br><span class="line"> -e MONGO_INITDB_ROOT_PASSWORD=password \</span><br><span class="line">  --name mongodb --net mongo-network mongo    </span><br></pre></td></tr></table></figure>
+
+<p><code>docker</code> run is used to run a container from an image. <code>-d</code> means run the container in background.<br>The terminal will be blocked if there is no <code>-d</code> flag.<br><code>-p</code> is used to map the port of the container to the port of the host. <code>-p 8000:4000</code> means that<br>we can access the container’s port 4000 by using host’s port 8000. <code>4000</code> is used by application running in container.<br><code>-e</code> is used to set environment variables. It’s easy to look at docker hub profile to know how to config environment variables.<br><code>--name</code> is used to set the name of the container. It is recommanded to set the name of the container in order to track the container easily.<br><code>--net</code> is used to set the network of the container. We can create a network by using <code>docker network create</code> command.<br><code>mongo</code> is the name of the image. We can use <code>docker pull</code> command to pull the image from docker hub.<br>If we don’t have the image in local, docker will pull the image from docker hub automatically.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create mongo-network</span><br></pre></td></tr></table></figure>
+
+<p>This command is used to create a network named <code>mongo-network</code>.</p>
+<p>Docker network is used to connect containers. Containers in the same network can communicate with each other by using container’s name as host name. I used to deploy <code>mongo</code>, a dbms, and <code>mongo-express</code>, a ui client, in the same network<br>so that <code>mongo-express</code> can connect to <code>mongo</code> by using <code>mongo</code> as host name.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose -f docker-compose.yaml up/down</span><br></pre></td></tr></table></figure>
+
+<p>This command is used to start&#x2F;stop a compose. Docker compose is used to deploy multiple containers at once. By default, all<br>services in a docker compose share the same docker network. So we don’t need to create a network manually.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v name:container_path</span><br></pre></td></tr></table></figure>
+
+<p>This command is used to mount a volume to a container. Docker volume is used to store data. The data in containers will be lost<br>when the container is restarted. However, the data in volumes will not be lost. We can mount a volume to a container to persist data.</p>
+<p>It is recommended to use <code>name:container_path</code> to give a name to the volume. In most cases, we don’t need to declare where we store the volume locally. Docker can manage the volume for us.</p>
+<p><code>docker ps</code> is used to look at all running containers. <code>docker exec -it container_id</code> is used to enter the container.</p>
+<h2 id="4-Dockerfile"><a href="#4-Dockerfile" class="headerlink" title="4. Dockerfile"></a>4. Dockerfile</h2><p>Dockerfile tells docker how to build an image from scratch. We can create our images to wrap our applications by using Dockerfile.</p>
+<p>Here is an example.</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">13</span>-alpine</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> MONGO_DB_USERNAME=admin \</span><br><span class="line">    MONGO_DB_PWD=password</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> -p /home/app</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./app /home/app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set default dir so that next commands executes in /home/app dir</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /home/app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># will execute npm install in /home/app because of WORKDIR</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># no need for /home/app/server.js because of WORKDIR</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;server.js&quot;</span>]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>FROM</code> is used to set the base image. <code>ENV</code> is used to set environment variables. <code>RUN</code> is used to run commands. <code>COPY</code> is used to copy files from host to container. <code>WORKDIR</code> is used to set the default directory, very like <code>cd</code> in linux. <code>CMD</code> is used to set the default command.</p>
+<h2 id="5-Docker-Compose"><a href="#5-Docker-Compose" class="headerlink" title="5. Docker Compose"></a>5. Docker Compose</h2><p>Docker compose should be defined by a <code>.yaml</code> file. Here is an example.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="comment"># my-app:</span></span><br><span class="line">  <span class="comment"># image: $&#123;docker-registry&#125;/my-app:1.0</span></span><br><span class="line">  <span class="comment"># ports:</span></span><br><span class="line">  <span class="comment"># - 3000:3000</span></span><br><span class="line">  <span class="attr">mongodb:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">27017</span><span class="string">:27017</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MONGO_INITDB_ROOT_USERNAME=admin</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MONGO_INITDB_ROOT_PASSWORD=password</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mongo-data:/data/db</span></span><br><span class="line">  <span class="attr">mongo-express:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mongo-express</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span> <span class="comment"># fixes MongoNetworkError when mongodb is not ready when mongo-express starts</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8081</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ME_CONFIG_MONGODB_ADMINUSERNAME=admin</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ME_CONFIG_MONGODB_ADMINPASSWORD=password</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ME_CONFIG_MONGODB_SERVER=mongodb</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">mongo-data:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">local</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-What’s-more"><a href="#6-What’s-more" class="headerlink" title="6. What’s more"></a>6. What’s more</h2><p>After learning this low-level container technology, developers should learn kubernates. It is a high-level container technology. It is used to manage clusters, which contain many containers.</p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/tutorial/" class="tag">#tutorial</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2023/05/23/macOS%20Bug%20Fix/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">macOS Bug Fix</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2023 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
