@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Enable Apple Silicon GPU to accelerate parallel computing - Chen Li</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Enable Apple Silicon GPU to accelerate parallel computing - Chen Li" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="https://charrylee0426.github.io/2024/03/07/Enable%20Apple%20Silicon%20GPU%20to%20accelerate%20parallel%20computing/index.html" />
+  
+  <meta property="og:image" content="/img/000001.png" />
+  
+  <meta property="og:article:published_time" content="2024-03-07T08:00:00.000Z" />
+  
+  <meta property="og:article:author" content="Chen Li" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Chen Li (Charry)&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item" target="_blank" rel="noopener" href="https://www.linkedin.com/in/chen-li-38002926a/">LinkedIn</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/CharryLee0426" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-mastodon nav-item-icon" href="https://mastodon.social/@CharryLee42" target="_blank" aria-label="Mastodon">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+        <div class="categories text-uppercase">
+        
+            <a href="/categories/Deep-Learning/">Deep Learning</a>
+        
+        </div>
+        
+
+        
+        <div class="date" id="date">
+            <span>March</span>
+            <span>7,</span>
+            <span>2024</span>
+        </div>
+        
+
+        <h2 class="title">Enable Apple Silicon GPU to accelerate parallel computing</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Enable-Apple-Silicon-GPU-to-accelerate-parallel-computing"><a href="#Enable-Apple-Silicon-GPU-to-accelerate-parallel-computing" class="headerlink" title="Enable Apple Silicon GPU to accelerate parallel computing"></a>Enable Apple Silicon GPU to accelerate parallel computing</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>Apple Silicon GPU is a powerful GPU that can be used to accelerate parallel computing. It is based on the Metal framework, which is a low-level, low-overhead hardware-accelerated graphics and compute API. It is designed to take advantage of the parallel processing capabilities of the GPU. Therefore, it is a good choice for parallel computing tasks. In fact, it is the first time that developers can consider some real Deep Learning tasks on Mac.</p>
+<p>Since the Apple M1 release, Apple Silicon GPU has got enough support from community. PyTorch, the most popular deep learning framework in academic, has released the support for Apple Silicon GPU <a target="_blank" rel="noopener" href="https://pytorch.org/blog/introducing-accelerated-pytorch-training-on-mac/">[1]</a>. TensorFlow, also a very popular deep learning framework that makes a specific optimization for edging devices, has also released the support <a target="_blank" rel="noopener" href="https://developer.apple.com/metal/tensorflow-plugin/">[2]</a>. What’s more, some popular deep learning models have been re-implemented to optimize for Apple Silicon GPU, such as llama.cpp<a target="_blank" rel="noopener" href="https://github.com/ggerganov/llama.cpp">[3]</a>. A lot of developers are enthusiatic about adventuring the new world of Apple Silicon GPU like <a target="_blank" rel="noopener" href="https://github.com/ggerganov">Georgi Gerganov</a>. Moreover, Apple has released the Apple Silicon optimized deep learning framework mlx<a target="_blank" rel="noopener" href="https://github.com/ml-explore/mlx">[4]</a>.</p>
+<p>What is more interesting is that Apple Silicon GPU is even a more financial solution for training and inference in the era of large models. Thanks to the Memory Unified Architecture (MUA), Apple Silicon GPU can share the memory with the CPU, or even SSD. In theory, GPU with larger VRAM is needed to run large models if no specific optimization is applied. So the MUA provides a more financial way to get VRAM, i.e., developers can get GPU with larger VRAM relatively cheaper. That is why open source community is very interested in Apple Silicon GPU.</p>
+<h2 id="2-the-d2l-module"><a href="#2-the-d2l-module" class="headerlink" title="2. the d2l module"></a>2. the <code>d2l</code> module</h2><p>The <code>d2l</code> module is the support lib used in the interactive tutorial “Dive into Deep Learning”<a target="_blank" rel="noopener" href="https://d2l.ai/">[5]</a>. It provides lots of useful wrappers and utilities for deep learning. It is a good choice for beginners to learn deep learning and researchers to prototype deep learning models quickly. The <code>d2l</code> module also provides support for various deep learning frameworks, such as PyTorch, TensorFlow, MXNet, and JAX.</p>
+<p>However, d2l has not released the support for Apple Silicon GPU. So we need to modify the source code of d2l to enable the support for Apple Silicon GPU. In this article, we will show you how to modify the source code of d2l to enable the support for Apple Silicon GPU.</p>
+<h2 id="3-Code-Modification"><a href="#3-Code-Modification" class="headerlink" title="3. Code Modification"></a>3. Code Modification</h2><h3 id="3-1-For-PyTorch"><a href="#3-1-For-PyTorch" class="headerlink" title="3.1 For PyTorch"></a>3.1 For PyTorch</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_apple_silicon</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Check if the code is running on Apple devices</span></span><br><span class="line"><span class="string">    with Apple Silicon.</span></span><br><span class="line"><span class="string">    Return True only if the code is running on Apple Silicon devices&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> torch.backends.mps.is_available()</span><br></pre></td></tr></table></figure>
+
+<p>Use this function to check whether the code is running on Apple Silicon devices. Must pay attention to the fact that <code>torch.backends.mps.is_built()</code> doesn’t necessarily mean MPS is available.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gpu</span>(<span class="params">i=<span class="number">0</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Get a GPU device.</span></span><br><span class="line"><span class="string">    Defined in :numref:`sec_use_gpu`&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> is_apple_silicon():</span><br><span class="line">        <span class="keyword">return</span> torch.device(<span class="string">&#x27;mps&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> torch.device(<span class="string">f&#x27;cuda:<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Use this function to get a GPU device. If the code is running on Apple Silicon devices, it will return a Metal Performance Shaders (MPS) device. Otherwise, it will return a CUDA device.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">num_gpus</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Get the number of available GPUs.</span></span><br><span class="line"><span class="string">    Defined in :numref:`sec_use_gpu`&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> is_apple_silicon():</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> torch.cuda.device_count()</span><br></pre></td></tr></table></figure>
+
+<p>Use this function to get the number of available GPUs. If the code is running on Apple Silicon devices, it will return 1. Maybe this magic number 1 should be changed in the future if Apple releases multi-GPU devices. Otherwise, it will return the number of available CUDA devices.</p>
+<h3 id="3-2-For-TensorFlow"><a href="#3-2-For-TensorFlow" class="headerlink" title="3.2 For TensorFlow"></a>3.2 For TensorFlow</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_apple_silicon</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Check if the code is running on Apple devices</span></span><br><span class="line"><span class="string">    with Apple Silicon.</span></span><br><span class="line"><span class="string">    Return True only if the code is running on Apple Silicon devices&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Mac&#x27;</span> <span class="keyword">in</span> platform.uname().node <span class="keyword">and</span> <span class="string">&#x27;arm&#x27;</span> <span class="keyword">in</span> platform.uname().machine</span><br></pre></td></tr></table></figure>
+
+<p>Unlike PyTorch, TensorFlow doesn’t provide a specific API to check whether the code is running on Apple Silicon devices. So we need to use the <code>platform</code> module to check it.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gpu</span>(<span class="params">i=<span class="number">0</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Get a GPU device.</span></span><br><span class="line"><span class="string">    Defined in :numref:`sec_use_gpu`&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> is_apple_silicon():</span><br><span class="line">        <span class="keyword">if</span> num_gpus() == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">&#x27;Install TensorFlow-Metal!&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.device(<span class="string">f&#x27;/physical_device:GPU:<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> tf.device(<span class="string">f&#x27;/GPU:<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Use this function to get a GPU device. If the code is running on Apple Silicon devices, it will return a Metal device. Otherwise, it will return a CUDA device. The support of Tensorflow for Apple Silicon GPU is implemented by adding tensorflow-metal plugin. Therefore, we need to raise a RuntimeError if the code is running on Apple Silicon devices but the tensorflow-metal plugin is missed.</p>
+<h2 id="4-Results"><a href="#4-Results" class="headerlink" title="4. Results"></a>4. Results</h2><p>GPU is designed for accelerating parallel computing. And the Transformer model is a typical model that can benefit from GPU acceleration. In general, image dataset’s information is much more than the text dataset. Therefore I designed an experiment to use the <code>d2l</code> module to train a Vision Transformer model on Apple Silicon GPU to test the modification.</p>
+<p>The experienment setup is as follows:</p>
+<ul>
+<li>Hardware: MacBook Pro (13-inch, M1, 2020)</li>
+<li>RAM: 16 GB;</li>
+<li>Model Architecture: 2 Transformer blocks, 8 heads, 512 hidden units, and 2048 mlp hidden units;</li>
+<li>Dataset: Fashion MNIST;</li>
+<li>Training setups: 10 epochs, batch size 128, learning rate 0.1, block dropout 0.1, embedding dropout 0.1, and attention dropout 0.1.</li>
+</ul>
+<p>The training process can use GPU acceleration well. With acceleration, it needs 1323 seconds. Without acceleration, it needs 3860 seconds. The acceleration rate is 191.8%. A very huge improvement!</p>
+<h2 id="5-Support-Materials"><a href="#5-Support-Materials" class="headerlink" title="5. Support Materials"></a>5. Support Materials</h2><p>Vision Transformer training on GPU</p>
+<p><img src="/../img/ViTMPS1.png"></p>
+<p>Vision Transformer training finished on GPU</p>
+<p><img src="/../img/ViTMPS2.png"></p>
+<p>Vision Transformer training on CPU</p>
+<p><img src="/../img/ViTCPU.png"></p>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Chen Li, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+        <p class="tags">
+            
+            <i class="icon"></i>
+            <a href="/tags/technical-writing/" class="tag">#technical writing</a>
+        </p>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2023/07/06/k8s/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Kubernetes Summary for Basic Usage</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">Blog</h2>
+                
+                <a href="/archives" class="item">Archives</a>
+                
+                <a href="/tags" class="item">Tags</a>
+                
+                <a href="/categories" class="item">Categories</a>
+                
+                <a href="/search" class="item">Search</a>
+                
+                <a href="/friends" class="item">Friends</a>
+                
+                <a href="/projects" class="item">Projects</a>
+                
+                <a href="/resume" class="item">Resume</a>
+                
+                <a href="/about" class="item">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Projects</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/University-Admission-Analysis-System" class="item">University Admission Analysis System</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryLang" class="item">CharryLang</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/CharryBlog" class="item">CharryBlog</a>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426/Webmester-s-Dictionary" class="item">Webmester&#39;s Dictionary for macOS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">Me</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/CharryLee0426" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://mastodon.social/@CharryLee42" class="item">Mastodon</a>
+                
+                <a href="mailto:lichen000426@gmail.com" class="item">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2024 Chen Li<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
